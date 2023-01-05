@@ -1,0 +1,40 @@
+/* 去除所有元素的初始内外边局,设置所有元素过渡300ms */
+* 
+{
+    padding: 0;
+    margin: 0;
+    transition: .3s all ease-in-out;
+    font-family: fantasy;
+}
+/* 设置body的最小高度为窗口高度 */
+body
+{
+    min-height: 10vh;
+}
+/* 将背景canvas的z轴设置在最底层 */
+#background 
+{
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* 针对input的简单初始化 */
+.input_text
+{
+    outline: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 0.8em;
+    font-weight: 400;
+}
+/* 针对 按钮(input:btn, button) 的简单初始化 */
+.btn
+{
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+}

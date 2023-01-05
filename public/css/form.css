@@ -1,0 +1,87 @@
+/* 根元素 */
+.form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: rgb(17, 17, 17);
+    padding: 30px;
+}
+/* 标题 */
+.form h3
+{
+    position: relative;
+    text-align: center;
+    letter-spacing: 0.25em;
+    color: rgb(0, 180, 0,1);
+    font-weight: 800;
+    font-size: 2em;
+}
+/* 表单 */
+.form form
+{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+/* 子级div盒子 */
+.form div
+{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+/*input输入框*/
+.input_text
+{
+    width: 100%;
+    color: white;
+    background: rgb(78, 78, 78);
+    border: 1px transparent solid;
+}
+.input_text~i
+{
+    position: absolute;
+    left: 8px;
+    pointer-events: none;
+    color: rgb(196, 196, 196);
+    font-style: normal;
+}
+/* 获取焦点和合法输入后input的变化 */
+.input_text:focus
+{
+    border: 1px rgb(0, 180, 0,1) solid;
+    box-shadow: inset 0 0 5px 1px rgb(0, 114, 0);
+    background: rgb(53, 53, 53);
+}
+.input_text:valid
+{
+    background: rgb(53, 53, 53);
+}
+/* 获取焦点和合法输入后i的变化 */
+.input_text:valid~i,
+.input_text:focus~i
+{
+    bottom: 30px;
+    color: rgb(0, 180, 0,1);
+    font-size: 1.2em;
+    font-style: oblique;
+}
+/* 按钮 */
+.btn
+{
+    display: block;
+    width: 100%;
+    background: rgb(0, 180, 0,1);
+    color: white;
+    letter-spacing: 0.5em;
+    font-size: 1em;
+}
