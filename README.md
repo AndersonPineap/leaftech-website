@@ -43,4 +43,4 @@
     </div>
 </div>
 ```
-- - 在`form`中的元素都是竖着排列，`div`中的(包括根元素)是横向排列，你可以通过在标签中添加`style`属性并添入`flex-direction: [column/row];`来控制排列（`column`竖 `row`横），不生效就再家一个`!important`
+- - 在`form`中的元素都是竖着排列，`div`中的(除了根元素)是横向排列，你可以通过在标签中添加`style`属性并添入`flex-direction: [column/row];`来控制排列（`column`竖 `row`横），不生效就再家一个`!important`
