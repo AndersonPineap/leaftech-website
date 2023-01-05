@@ -1,8 +1,5 @@
 // 连线背景代码
 // 配合canvas使用
-const canvas = document.createElement("canvas");
-canvas.id = "background";
-document.body.appendChild(canvas);
 canvas = null;
 (function(){})(function () {
     window.addEventListener('resize', () => {
