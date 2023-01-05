@@ -6,22 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/main.css">
     <link rel="stylesheet" href="../../public/css/form.css">
-    <title>Document</title>
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <title>欢迎</title>
+    <style>
+        .form
+        {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 8px;
+            box-shadow: 0 0 15px 1px black;
+        }
+    </style>
 </head>
 <body>
 <canvas id="background"></canvas>
     <div class="form">
-        <h3>登入</h3>
+        <h3>欢迎登录</h3>
         <form action="">
             <div>
-                <input type="text" class="input_text">
+                <input type="text" class="input_text" required>
                 <i>Username</i>
             </div>
             <div>
-                <input type="text" class="input_text">
+                <input type="password" class="input_text" required>
                 <i>Password</i>
             </div>
         </form>
+        <div>
+            <button class="btn">登录</button>
+        </div>
     </div>
 </body>
 <script src="../../public/js/background.js"></script>
