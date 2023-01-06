@@ -8,6 +8,7 @@
 - 在其他html内引用(`<iframe>`)的`html文件`请放置于`resource/iframe`
 - <b>所有图片</b>请放置在`resource/images/`文件夹内
 4. 可以通用的js代码请打包成函数并放置在`public/js/GM.js`内
+5. 所有`html`文件请引入`public/css/main.css`和`public/js/GM.js`
 
 ## 代码规范
 1. 函数要注明有什么作用，必要的/不必要的参数，参数有什么用，返回了个什么东西，一定要写清楚
