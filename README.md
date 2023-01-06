@@ -38,11 +38,11 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
     <!--一个表单-->
     <form action="api">
         <div>
-            <input type="text" class="input_text">
+            <input type="text" class="input_text" required>
             <i>对此空的注释</i>
         </div>
         <div>
-            <input type="text" class="input_text">
+            <input type="text" class="input_text" required>
             <i>对此空的注释</i>
         </div>
     </form>
