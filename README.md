@@ -25,6 +25,7 @@
  */
 function getRandom(min, max) {return Math.random() * (max - min) + min;}
 ```
+6. css的id，class等名称，单词间用`-`连接，如`first div`命名为`first-div`
 
 ## 代码说明
 - `public/js/background.js`网上抄的，我尽量在里面标注清楚，引用后确保你的`body`元素中有`<canvas id="background"></canvas>`这行代码且在引用前引用了`public/js/GM.js`
@@ -54,3 +55,9 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
 </div>
 ```
 - - 在`form`中的元素都是竖着排列，`div`中的(除了根元素)是横向排列，你可以通过在标签中添加`style`属性并添入`flex-direction: [column/row];`来控制排列（`column`竖 `row`横），不生效就再加一个`!important`
+
+### GM.js函数说明
+|函数|功能|返回值|
+|--|--|--|
+|getRandom(min,max)|获取一个从min到max的随机数|number|
+|showInfo(type,message)|生成一个提示信息|无|

@@ -38,6 +38,7 @@ body
     border-radius: 8px;
     border: none;
     text-align: center;
+    cursor: pointer;
 }
 /* 小卡片的简单初始化 */
 .flex-card

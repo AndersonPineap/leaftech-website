@@ -2,19 +2,11 @@
 
 /**
  * ### 获取一个从min到max的随机数
- * @param min 确定最小值 
- * @param max 确定最大值 
+ * @param min 确定最小值  默认为0
+ * @param max 确定最大值  默认为1
  * @returns 返回一个number
  */
-function getRandom(min, max) {return Math.random() * (max - min) + min;}
-
-/**
- * ### 程序休眠一段时间
- * @param time 休眠时间 单位是毫米 
- */
-function sleep(time){
-    
-}
+function getRandom(min=0, max=1) {return Math.random() * (max - min) + min;}
 
 /**
  * ### 在网页中输出提示信息，此消息会根据字符数量调整持续时间（每个字符150ms），最短持续时间为2.5s，最长时间为15s
