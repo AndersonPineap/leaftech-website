@@ -1,9 +1,6 @@
-(function(){})(function () {
-    /* 这个给window添加了监听 */
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    })
+(function () {
+    /**动画id */
+    var animateId
     /**背景画布元素 */
     const canvas = document.getElementById("background");
     canvas.width = window.innerWidth;
@@ -14,7 +11,7 @@
     /**这个变量控制粒子的最大数量 */
     const pointNum = 80;
     /**控制粒子颜色 */
-    const colorRGB = '30, 100, 20';
+    const colorRGB = '30, 180, 20';
     /**存储所有粒子的数组 */
     let points = [];
     /**鼠标控制的粒子 */
@@ -77,7 +74,7 @@
             // 修改以下两句可以控制粒子速度
             let speedX = getRandom(-2.5, 2.5);
             let speedY = getRandom(-2.5, 2.5);
-            let color = 'rgba(' + colorRGB + ',' + (1 - size / 4)+')';
+            let color = 'rgba(' + colorRGB + ',' + (1 - size / 3)+')';
             points.push(new point(x, y, speedX, speedY, size, color))
         }
     }
@@ -106,7 +103,7 @@
     }
     /**### 创建动画的函数 */
     function animate() {
-        requestAnimationFrame(animate);
+        animateId = requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         points.forEach(point => {
             point.update();
@@ -137,4 +134,16 @@
     mouseEve();
     createPoint();
     animate();
+
+    /* 这个给window添加了监听 */
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        cancelAnimationFrame(animateId);
+        points = [];
+        mousePoint = null;
+        mouseEve();
+        createPoint();
+        animate();
+    })
 }());

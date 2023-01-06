@@ -40,6 +40,8 @@ body
     text-align: center;
     cursor: pointer;
 }
+.btn:hover {transform: scale(1.05,1.05);}
+.btn:active {transform: scale(0.95,0.95);}
 /* 小卡片的简单初始化 */
 .flex-card
 {
