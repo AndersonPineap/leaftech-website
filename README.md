@@ -16,6 +16,17 @@
 1. 函数要注明有什么作用，必要的/不必要的参数，参数有什么用，返回了个什么东西，一定要写清楚
 2. 程序先保证有用，再去优化
 3. js代码<b>一定要</b>以 `;` 结尾
+4. js变量和函数使用驼峰命名法，首字母不大写，如将`get random`命名为`getRandom`
+5. js函数前标注好用途，参数意义，返回类型，如：
+```javascript
+/**
+ * ### 获取一个从min到max的随机数
+ * @param min 确定最小值 
+ * @param max 确定最大值 
+ * @returns 返回一个number
+ */
+function getRandom(min, max) {return Math.random() * (max - min) + min;}
+```
 
 ## 代码说明
 - `public/js/background.js`网上抄的，我尽量在里面标注清楚，引用后确保你的`body`元素中有`<canvas id="background"></canvas>`这行代码且在引用前引用了`public/js/GM.js`
