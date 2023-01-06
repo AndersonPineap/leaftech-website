@@ -1,13 +1,11 @@
 /* 根元素 */
 .form
 {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
     background: rgb(17, 17, 17);
-    padding: 30px;
 }
 /* 标题 */
 .form h3

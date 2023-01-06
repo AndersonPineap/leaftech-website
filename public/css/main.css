@@ -39,3 +39,11 @@ body
     border: none;
     text-align: center;
 }
+/* 小卡片的简单初始化 */
+.flex-card
+{
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    border-radius: 8px;
+}
