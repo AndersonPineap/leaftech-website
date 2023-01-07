@@ -24,22 +24,22 @@
 <canvas id="background"></canvas>
     <div class="flex-card form">
         <h3>欢迎登录</h3>
-        <form action="../../index.html">
+        <form>
             <div>
-                <input type="text" class="input_text" required>
+                <input type="text" class="input_text" name="username" required>
                 <i>Username</i>
             </div>
             <div>
-                <input type="password" class="input_text" required>
+                <input type="password" class="input_text" name="password" required>
                 <i>Password</i>
             </div>
         </form>
         <div>
-            <input type="button" value="取消" class="btn">
-            <input type="submit" value="登录" class="btn">
+            <input type="submit" value="登录" class="btn" id="submit">
         </div>
     </div>
 </body>
 <script src="/static/public/js/GM.js"></script>
 <script src="/static/public/js/background.js"></script>
+<script src="/static/public/js/login.js"></script>
 </html>

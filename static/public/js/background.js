@@ -145,5 +145,5 @@
         mouseEve();
         createPoint();
         animate();
-    })
+    });
 }());
