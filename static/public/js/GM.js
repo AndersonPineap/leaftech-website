@@ -12,8 +12,10 @@ function getRandom(min=0, max=1) {return Math.random() * (max - min) + min;}
  * ### 在网页中输出提示信息，此消息会根据字符数量调整持续时间（每个字符150ms），最短持续时间为2.5s，最长时间为15s
  * @param type 提示类型 可用参数（normal,success,warning,error）默认为normal
  * @param message 提示信息 默认为message
+ * @param x 提示位置，默认为null使其在右侧堆叠显示，传入数值会使提示在指定位置出现
+ * @param y 同上
  */
-function showInfo(type="normal", message="message"){
+function showInfo(type="normal", message="message", x=null, y=null){
     /**放置提示信息的盒子 */
     let box = document.getElementById("show-info-box");
     // 不存在则创建
@@ -24,6 +26,12 @@ function showInfo(type="normal", message="message"){
     }
     /**提示信息的盒子 */
     let info = document.createElement("p");
+    if (x&&y) {
+        info.style.position = "fixed";
+        info.style.left = x+"px";
+        info.style.top = y+"px";
+        info.style.transform = "translate(-50%,-120%)"
+    }
     // 设置type，在此添加新类新
     if(type=="normal") info.setAttribute("type","normal");
     else if(type=="warning") info.setAttribute("type","warning");

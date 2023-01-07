@@ -4,7 +4,7 @@
 3. 文件放置位置
 - `css文件`请放置于`static/public/css/`文件夹内
 - `js文件`请放置于`static/public/js/`文件夹内
-- <b>所有`html文件`</b>放置于`templates/`文件夹内
+- <b>所有</b>`html文件`放置于`templates/`文件夹内
 - <b>所有图片</b>请放置在`static/resource/images/`文件夹内
 1. 可以通用的js代码请打包成函数并放置在`static/public/js/GM.js`内
 2. 所有`html`文件请引入`static/public/css/main.css`和`static/public/js/GM.js`
@@ -13,7 +13,7 @@
 
 ## 文件说明
 - `userdb` 用户数据库（通过base64加密过的
-- `app.py` 后端服务（默认地址：http://0.0.0.0:8080
+- `app.py` 后端服务
   - 依赖的库：
     - flask
     - gevent

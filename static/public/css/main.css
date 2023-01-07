@@ -14,7 +14,7 @@ body
 /* 将背景canvas的z轴设置在最底层 */
 #background 
 {
-    z-index: 0;
+    z-index: -1;
     position: fixed;
     top: 0;
     left: 0;
