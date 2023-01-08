@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <link rel="stylesheet" href="/static/public/css/github-dark.min.css">
+    <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
+    <title>{{ title }}</title>
+    <style>
+        #article-output
+        {
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        #temp-data
+        {
+            position: fixed;
+            top: -1000px;
+            left: -1000px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background"></canvas>
+    <p>{{ title }}——{{ editor }}</p>
+    <div id="article-output"></div>
+    <p>uid: {{ uid }}</p>
+    <textarea id="temp-data">{{ article }}</textarea>
+</body>
+<script src="/static/public/js/GM.js"></script>
+<script src="/static/public/js/background.js"></script>
+<script src="/static/public/js/marked.min.js"></script>
+<script src="/static/public/js/highlight.min.js"></script>
+<script>
+    document.getElementById('article-output').innerHTML = marked.parse(document.getElementById('temp-data').value);
+    hljs.highlightAll();
+    document.body.removeChild(document.getElementById('temp-data'));
+</script>
+</html>

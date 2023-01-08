@@ -1,20 +1,22 @@
-import os,json,base64
+import os,json,base64,time
 from hashlib import md5
 from gevent import pywsgi
 from flask import request,Flask,render_template,make_response,session,jsonify
 
 # 数据库加密
-def userdb_encode(db:dict)->bool:
+def db_encode(db:dict,db_file:str)->bool:
     try:
-        with open('userdb',mode="w",encoding="utf-8") as f:
+        with open(db_file,mode="w",encoding="utf-8") as f:
             f.write((base64.b64encode(json.dumps(db).encode("utf-8"))).decode("utf-8"))
         return True
     except:
         return False
 
 # 数据库解密
-def userdb_decode(db:str)->dict:
-    return json.loads(base64.b64decode(db.encode("utf-8")).decode("utf-8"))
+def db_decode(db:str)->dict:
+    with open(db,mode="r",encoding="utf-8") as f:
+        data = f.read()
+    return json.loads(base64.b64decode(data.encode("utf-8")).decode("utf-8"))
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -25,7 +27,8 @@ def home():
     if 'username' in session:
         username = session["username"]
         return render_template('index.html',
-                                username=username
+                                username=username,
+                                articles = db_decode('articledb').values()
                                 )
     else:
         return render_template('sign_in.html')
@@ -33,8 +36,7 @@ def home():
 # 登录api
 @app.route('/login', methods = ['POST'])
 def login():
-    with open('userdb',mode="r",encoding="utf-8") as f:
-        userdb = userdb_decode(f.read())
+    userdb = db_decode('userdb')
     print(userdb)
     username = request.form["username"]
     password = request.form["password"]
@@ -46,19 +48,74 @@ def login():
             res = {
                 'code':200
             }
-            return jsonify(res)
         else:
             # 密码错误
             res = {
                 'code':300
             }
-            return jsonify(res)
     else:
         # 账号不存在
         res = {
             'code':400
         }
+    return jsonify(res)
+
+# 编辑和上传文章
+@app.route('/article/upload',methods=['POST', 'GET'])
+def getArticle():
+    if request.method == "GET":
+        return render_template('mark_editor.html')
+    else:
+        print(request.form)
+        try:
+            editor = session["username"]
+        except:
+            res = {
+                "code": 400
+            }
+            return jsonify(res)
+        article = request.form["article"]
+        title = request.form["title"]
+        uid = md5((str(time.time())+title).encode("utf-8")).hexdigest()
+        try:
+            articledb = db_decode('articledb')
+        except:
+            articledb = {}
+        print(articledb)
+        articledb[uid] = {
+            "title": title,
+            "editor": editor,
+            "article": article,
+            "uid": uid
+        }
+        try:
+            db_encode(articledb,'articledb')
+            res = {
+                "code": 200,
+                "uid": uid
+            }
+        except:
+            res = {
+                "code": 300
+            }
         return jsonify(res)
+
+@app.route('/article/<uid>',methods=['GET'])
+def sendArticle(uid):
+    try:
+        articledb = db_decode('articledb')
+        print(articledb)
+        data = articledb.get(uid)
+        if data == None:
+            return render_template('404.html')
+        return render_template('article.html',
+                        title = data["title"],
+                        editor = data['editor'],
+                        article = data['article'],
+                        uid = data["uid"]
+                        )
+    except:
+        return render_template('404.html')
 
 server =  pywsgi.WSGIServer(('0.0.0.0',8080),app)
 server.serve_forever()

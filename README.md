@@ -2,17 +2,18 @@
 1. 文件名不得夹带空格，如`test file.html`将是非法的，空格请使用`_`代替，如`test_file.html`
 2. 文件名在易懂的情况下尽量简单
 3. 文件放置位置
-- `css文件`请放置于`static/public/css/`文件夹内
-- `js文件`请放置于`static/public/js/`文件夹内
-- <b>所有</b>`html文件`放置于`templates/`文件夹内
-- <b>所有图片</b>请放置在`static/resource/images/`文件夹内
-1. 可以通用的js代码请打包成函数并放置在`static/public/js/GM.js`内
-2. 所有`html`文件请引入`static/public/css/main.css`和`static/public/js/GM.js`
+  - `css文件`请放置于`static/public/css/`文件夹内
+  - `js文件`请放置于`static/public/js/`文件夹内
+  - <b>所有</b>`html文件`放置于`templates/`文件夹内
+  - <b>所有图片</b>请放置在`static/resource/images/`文件夹内
+4. 可以通用的js代码请打包成函数并放置在`static/public/js/GM.js`内
+5. 所有`html`文件请引入`static/public/css/main.css`和`static/public/js/GM.js`
 
 ---
 
 ## 文件说明
 - `userdb` 用户数据库（通过base64加密过的
+- `articledb` 文章数据库（也是加密过的
 - `app.py` 后端服务
   - 依赖的库：
     - flask
@@ -33,6 +34,51 @@
     - `js` 存储js文件
   - `resource/` 存储网站资源
     - `images/` 存储图片文件
+---
+
+### 数据库解析后的样子
+- `userdb`:
+
+```json
+{
+  username-1:{
+    // 目前数据库仅存储了密码，要存储其他数据请在app.py里编写相应方法，预计将会添加article成员以保存该用户编写的所有文章
+    "password": password,
+    ...
+  },
+  ...,
+  username-n:{
+    "password": password,
+    ...
+  }
+}
+```
+
+- `articledb`:
+
+```json
+{
+  uid-1:{
+    "title": title, // 文章标题
+    "editor": editor, // 作者
+    "article": article, // 正文
+    "uid": uid  // 文章索引
+  },
+  ...,
+  uid-n:{
+    "title": title,
+    "editor": editor,
+    "article": article,
+    "uid": uid
+  }
+}
+```
+
+ - `article`使用思路：
+   - uid是每篇文章的唯一索引，他的组成是对（title+上传时间）的字符串进行md5取得的结果
+   - 使用`db_decode()`可以得到`dict`数据
+   - 未来开发搜索功能可以使用`dict.value()`获取由文章数据组成的数组，之后遍历此数组查询符合条件的元素并把其内部的`uid`保存到一个数组变量中，最后返回给前端即可
+
 ---
 
 ## 代码规范
@@ -83,7 +129,7 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
     </div>
 </div>
 ```
-- `login.js`使用的是md5加密
+- 用户库密码使用了`md5`加密，所以`login.js`在上传数据时会先对密码进行一次`md5()`
 
 ---
 
@@ -96,3 +142,7 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
 |quickFillForm|将formEle元素内所有input的键和值快速填充至一个FormData类|FormData|
 
 ---
+
+## 开发计划
+1. 为article编写对应的css
+2. 登录前访问任何页面都会强制跳转到登录页面
