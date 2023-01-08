@@ -114,6 +114,11 @@ def sendArticle(uid):
     except:
         return render_template('404.html')
 
+@app.route('/article/',methods=['GET'])
+def articlelist():
+    """获取所有文章列表"""
+    return '<h1>开发中</h1>'
+
 if __name__ == "__main__":
     server =  pywsgi.WSGIServer(('0.0.0.0',8080),app)
     server.serve_forever()

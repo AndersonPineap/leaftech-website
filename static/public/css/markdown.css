@@ -57,7 +57,10 @@
     border-collapse: collapse;
     width: max-content;
 }
-
+.markdown table tr:hover {
+    background: rgb(0, 50, 0, 0.95) !important;
+    transform: scale(1.03);
+}
 .markdown table thead {
     background: rgba(10,10,10,0.95);
     color: white;
