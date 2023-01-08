@@ -37,10 +37,9 @@ def home():
 @app.route('/login', methods = ['POST'])
 def login():
     userdb = db_decode('userdb')
-    print(userdb)
     username = request.form["username"]
     password = request.form["password"]
-    print(f"username is {username}, password is {password}")
+    print(f"{username} is logged in")
     if username in userdb.keys():
         if password == userdb[username]["password"]:
             # 登录成功
@@ -81,7 +80,6 @@ def getArticle():
             articledb = db_decode('articledb')
         except:
             articledb = {}
-        print(articledb)
         articledb[uid] = {
             "title": title,
             "editor": editor,
@@ -104,7 +102,6 @@ def getArticle():
 def sendArticle(uid):
     try:
         articledb = db_decode('articledb')
-        print(articledb)
         data = articledb.get(uid)
         if data == None:
             return render_template('404.html')

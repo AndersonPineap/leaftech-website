@@ -39,6 +39,7 @@ document.getElementById("submit").addEventListener('click',(e)=>{
                 showInfo('success',`上传成功，你的文章uid为${resp["uid"]}`);
                 input.value = '';
                 input_t.value = '';
+                window.open("/","_self");
             } else if (resp["code"]==300) {
                 showInfo('error', '服务器读写错误');
             } else {
@@ -50,5 +51,5 @@ document.getElementById("submit").addEventListener('click',(e)=>{
     xhr.send(form);
 })
 document.getElementById("cancel").addEventListener('click',()=>{
-
+    window.open("/","_self");
 })

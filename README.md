@@ -41,15 +41,15 @@
 
 ```json
 {
-  username-1:{
+  "username-1":{
     // 目前数据库仅存储了密码，要存储其他数据请在app.py里编写相应方法，预计将会添加article成员以保存该用户编写的所有文章
-    "password": password,
-    ...
+    "password": "password",
+    "...": "..."
   },
-  ...,
-  username-n:{
-    "password": password,
-    ...
+  "...":{},
+  "username-n":{
+    "password": "password",
+    "...": "..."
   }
 }
 ```
@@ -58,18 +58,18 @@
 
 ```json
 {
-  uid-1:{
-    "title": title, // 文章标题
-    "editor": editor, // 作者
-    "article": article, // 正文
-    "uid": uid  // 文章索引
+  "uid-1":{
+    "title": "title", // 文章标题
+    "editor": "editor", // 作者
+    "article": "article", // 正文
+    "uid": "uid"  // 文章索引
   },
-  ...,
-  uid-n:{
-    "title": title,
-    "editor": editor,
-    "article": article,
-    "uid": uid
+  "...":{},
+  "uid-n":{
+    "title": "title",
+    "editor": "editor",
+    "article": "article",
+    "uid": "uid"
   }
 }
 ```
