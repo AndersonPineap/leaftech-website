@@ -1,5 +1,4 @@
-.markdown 
-{
+.markdown {
     padding: 15px;
     margin: 15px;
     border-radius: 8px;
@@ -7,67 +6,86 @@
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    background: rgba(255,255,255,0.5);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px 1px rgb(17, 17, 17);
 }
-.markdown *
-{
+
+.markdown * {
     margin-top: 1px;
     margin-bottom: 1px;
 }
-.markdown iframe
-{
+
+.markdown *:not(code *) {
+    color: white;
+}
+
+.markdown iframe {
     width: 100%;
     border-radius: 8px;
 }
-.markdown a
-{
-    color: rgb(0, 110, 0);
-}
-.markdown a:hover
-{
+
+.markdown a {
     color: rgb(0, 150, 0);
 }
+
+.markdown a:hover {
+    color: rgb(0, 215, 0);
+}
+
 .markdown ul,
-.markdown ol
-{
+.markdown ol {
     list-style-position: inside;
     margin-left: 20px;
 }
-.markdown code:not(.hljs)
-{
-    background: #dcdcdc;
+
+.markdown img {
+    width: 100%;
+}
+
+.markdown code:not(.hljs) {
+    background: #3d3d3d;
     padding-inline: 3px;
     color: #ff0000;
     margin-inline: 3px;
     border-radius: 4px;
 }
-.markdown table
-{
+
+.markdown table {
     border-radius: 8px;
     overflow: hidden;
     border-collapse: collapse;
     width: max-content;
 }
-.markdown table thead
-{
-    background: black;
+
+.markdown table thead {
+    background: rgba(10,10,10,0.95);
     color: white;
-}
-.markdown table thead tr th:first-of-type
-{ border-top-left-radius: 8px; }
-.markdown table thead tr th:last-of-type
-{ border-top-right-radius: 8px; }
-.markdown table tbody tr:nth-of-type(2n)
-{
-    background: rgba(255,255,255,0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
-.markdown table td,
-.markdown table th
-{ padding: 15px 20px; }
 
-.markdown code:hover
-{ transform: scale(1.01);}
+.markdown table thead tr th:first-of-type {
+    border-top-left-radius: 8px;
+}
+
+.markdown table thead tr th:last-of-type {
+    border-top-right-radius: 8px;
+}
+.markdown table tbody tr {
+    background: rgba(10, 30, 10, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.markdown table tbody tr:nth-of-type(2n) {
+    background: rgba(50, 60, 50, 0.3);
+}
+
+.markdown table td,
+.markdown table th {
+    padding: 15px 20px;
+}
+
+.markdown code:hover {
+    transform: scale(1.01);
+}

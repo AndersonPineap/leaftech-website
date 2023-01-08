@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +11,7 @@
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
     <title>{{ title }}</title>
     <style>
-        #temp-data
-        {
+        #temp-data {
             position: fixed;
             top: -1000px;
             left: -1000px;
@@ -22,6 +22,7 @@
         }
     </style>
 </head>
+
 <body>
     <canvas id="background"></canvas>
     <p>{{ title }}——{{ editor }}</p>
@@ -38,12 +39,12 @@
     hljs.highlightAll();
     document.body.removeChild(document.getElementById('temp-data'));
     let ifms = document.querySelectorAll('iframe');
-    if(ifms){
-        function re(){
-                ifms.forEach(ele=>{
+    if (ifms) {
+        function re() {
+            ifms.forEach(ele => {
                 let w = ele.clientWidth;
-                let h = w/16*9;
-                ele.style.height = h+"px";
+                let h = w / 16 * 9;
+                ele.style.height = h + "px";
             });
             console.log('finish');
         }
@@ -51,4 +52,5 @@
         window.addEventListener('resize', re);
     }
 </script>
+
 </html>
