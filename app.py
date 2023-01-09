@@ -21,6 +21,10 @@ def db_decode(db:str)->dict:
     except:
         return {}
 
+
+userdb = db_decode('userdb')
+articledb = db_decode('articledb')
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -39,7 +43,6 @@ def home():
 @app.route('/login', methods = ['POST'])
 def login():
     """登录api"""
-    userdb = db_decode('userdb')
     username = request.form["username"]
     password = request.form["password"]
     print(f"{username} is logged in")
@@ -79,7 +82,6 @@ def getArticle():
         article = request.form["article"]
         title = request.form["title"]
         uid = md5((str(time.time())+title).encode("utf-8")).hexdigest()
-        articledb = db_decode('articledb')
         articledb[uid] = {
             "title": title,
             "editor": editor,
@@ -101,7 +103,6 @@ def getArticle():
 def sendArticle(uid):
     """获取制定文章"""
     try:
-        articledb = db_decode('articledb')
         data = articledb.get(uid)
         if data == None:
             return render_template('404.html')
