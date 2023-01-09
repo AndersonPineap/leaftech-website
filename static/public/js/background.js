@@ -72,7 +72,7 @@
             // 修改以下两句可以控制粒子速度
             let speedX = getRandom(-2.5, 2.5);
             let speedY = getRandom(-2.5, 2.5);
-            let color = 'rgba(' + colorRGB + ',' + (1 - size / 3)+')';
+            let color = 'rgba(' + colorRGB + ',' + (1 - size / 3) + ')';
             points.push(new point(x, y, speedX, speedY, size, color))
         }
     }
@@ -89,7 +89,7 @@
                 let distance = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
                 // 距离小于distanceLimit则连接
                 if (distance <= distanceLimit) {
-                    ctx.strokeStyle = 'rgba(' + colorRGB + ',' + (1 - distance / distanceLimit)+')';
+                    ctx.strokeStyle = 'rgba(' + colorRGB + ',' + (1 - distance / distanceLimit) + ')';
                     ctx.beginPath();
                     ctx.lineWidth = .8;
                     ctx.moveTo(p1.x, p1.y);

@@ -1,6 +1,5 @@
 /* 根元素 */
-.form
-{
+.form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -8,9 +7,9 @@
     background: rgb(17, 17, 17);
     min-width: 400px;
 }
+
 /* 标题 */
-.form h3
-{
+.form h3 {
     position: relative;
     text-align: center;
     letter-spacing: 0.25em;
@@ -19,9 +18,9 @@
     font-size: 2em;
     text-shadow: rgb(0, 50, 0) 0 0 20px;
 }
+
 /* 表单 */
-.form form
-{
+.form form {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -32,9 +31,9 @@
     height: 100%;
     flex: 1;
 }
+
 /* 子级div盒子 */
-.form div
-{
+.form div {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -43,16 +42,16 @@
     width: 100%;
     gap: 20px;
 }
-textarea.input_text
-{
+
+textarea.input_text {
     resize: none;
     height: 100%;
     overflow: auto;
     font-style: normal;
 }
+
 /*input输入框*/
-.input_text
-{
+.input_text {
     width: 100%;
     color: white;
     background: rgb(15, 15, 15);
@@ -62,8 +61,8 @@ textarea.input_text
     letter-spacing: 0.15em;
     text-shadow: rgba(100, 100, 100) 0 0 20px;
 }
-.input_text~i
-{
+
+.input_text~i {
     position: absolute;
     left: 8px;
     top: 10px;
@@ -73,28 +72,29 @@ textarea.input_text
     text-shadow: rgba(30, 30, 30) 0 0 20px;
     font-size: 0.8em;
 }
+
 /* 鼠标指着input时的效果 */
-.input_text:hover
-{
+.input_text:hover {
     border: 1px rgb(0, 20, 0) solid;
     box-shadow: inset 0 0 15px 1 rgb(0, 20, 0);
     text-shadow: rgba(150, 150, 150) 0 0 5px;
 }
-.input_text:hover~i{
+
+.input_text:hover~i {
     color: rgb(240, 240, 240);
     text-shadow: rgba(100, 100, 100) 0 0 5px;
 }
+
 /* 获取焦点和合法输入后input的变化 */
-.input_text:focus
-{
+.input_text:focus {
     border: 1px rgb(0, 80, 0) solid;
     box-shadow: inset 0 0 15px 1px rgb(0, 80, 0);
-    background: rgba(10,10,10);
+    background: rgba(10, 10, 10);
 }
+
 /* 获取焦点和合法输入后i的变化 */
 .input_text:valid~i,
-.input_text:focus~i
-{
+.input_text:focus~i {
     transform: translateY(-120%);
     /* margin-bottom: 65px; */
     color: rgb(0, 180, 0);
@@ -102,9 +102,9 @@ textarea.input_text
     text-shadow: rgb(0, 50, 0) 0 0 20px;
     font-style: normal;
 }
+
 /* 按钮 */
-.btn
-{
+.btn {
     display: block;
     width: 100%;
     background: rgba(17, 17, 17);
@@ -114,33 +114,33 @@ textarea.input_text
     box-shadow: rgba(25, 25, 25) 0 0 15px 1px;
     cursor: pointer;
 }
-.btn:hover
-{
+
+.btn:hover {
     box-shadow: rgba(35, 35, 35) 0 0 15px 2px;
     text-shadow: rgba(210, 210, 210) 0 0 15px;
     background: rgb(45, 45, 45);
 }
-.btn:active
-{
+
+.btn:active {
     box-shadow: rgb(30, 30, 30) 0 0px 15px 0;
     text-shadow: none;
     color: rgba(100, 100, 100);
     background: rgb(30, 30, 30);
     transition: .1s;
 }
-.btn[type="submit"]
-{
+
+.btn[type="submit"] {
     box-shadow: rgb(0, 50, 0) 0 0 15px 1px;
     background: rgb(0, 180, 0);
 }
-.btn[type="submit"]:hover
-{
+
+.btn[type="submit"]:hover {
     box-shadow: rgb(0, 80, 0) 0 0px 15px 2px;
     text-shadow: rgba(210, 210, 210) 0 0 15px;
     background: rgb(0, 200, 0);
 }
-.btn[type="submit"]:active
-{
+
+.btn[type="submit"]:active {
     box-shadow: rgb(0, 30, 0) 0 0px 15px 0;
     text-shadow: none;
     color: rgba(100, 100, 100);

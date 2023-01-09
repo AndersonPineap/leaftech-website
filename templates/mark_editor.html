@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +13,11 @@
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
     <title>markdown文章编辑器</title>
     <style>
-        body>main
-        {
+        body>main {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             width: 95%;
             height: 95vh;
             border-radius: 8px;
@@ -25,25 +25,25 @@
             flex-direction: row;
             overflow: hidden;
         }
-        body>main>div.flex-card
-        {
+
+        body>main>div.flex-card {
             border-radius: 0;
             min-width: 400px;
             width: 100%;
         }
-        body>main>div.flex-card>form
-        {
+
+        body>main>div.flex-card>form {
             height: 100%;
             flex: 1;
         }
-        body>main>div:last-of-type
-        {
+
+        body>main>div:last-of-type {
             overflow: auto;
             width: 100%;
             min-width: 400px;
         }
-        body>main>div:last-of-type>h3
-        {
+
+        body>main>div:last-of-type>h3 {
             background: rgb(17, 17, 17);
             text-align: center;
             letter-spacing: 0.25em;
@@ -54,6 +54,7 @@
         }
     </style>
 </head>
+
 <body>
     <canvas id="background"></canvas>
     <main>
@@ -76,7 +77,7 @@
         <div>
             <h3>预览</h3>
             <div id="output" class="markdown">
-        </div>
+            </div>
     </main>
 </body>
 <script src="/static/public/js/GM.js"></script>
@@ -84,4 +85,5 @@
 <script src="/static/public/js/highlight.min.js"></script>
 <script src="/static/public/js/marked.min.js"></script>
 <script src="/static/public/js/mark_editor.js"></script>
+
 </html>

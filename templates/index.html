@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
     <title>欢迎，{{ username }}</title>
 </head>
+
 <body>
     <canvas id="background"></canvas>
     <h1>欢迎回来，{{ username }}</h1>
@@ -19,7 +21,8 @@
         <li><a href="/article/{{ i['uid'] }}">{{ i['title'] }}——{{ i['editor'] }}</a></li>
         {% endfor %}
     </ul>
-</body> 
+</body>
 <script src="/static/public/js/GM.js"></script>
 <script src="/static/public/js/background.js"></script>
+
 </html>
