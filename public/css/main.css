@@ -1,38 +1,38 @@
 /* 去除所有元素的初始内外边局,设置所有元素过渡300ms */
-* 
-{
+* {
     padding: 0;
     margin: 0;
     transition: .3s all ease-in-out;
     font-family: fantasy;
 }
+
 /* 设置body的最小高度为窗口高度 */
-body
-{
+body {
     min-height: 100vh;
 }
+
 /* 将背景canvas的z轴设置在最底层 */
-#background 
+/* #background 
 {
     z-index: 0;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(0,0,0);
-}
+    background-color: rgb(0,0,0); */
+/* display: inline;
+}  */
 
 /* 针对input的简单初始化 */
-.input_text
-{
+.input_text {
     outline: none;
     border-radius: 8px;
     padding: 10px 15px;
     font-size: 0.8em;
     font-weight: 400;
 }
+
 /* 针对 按钮(input:btn, button) 的简单初始化 */
-.btn
-{
+.btn {
     display: block;
     padding: 8px 12px;
     border-radius: 8px;
@@ -40,24 +40,30 @@ body
     text-align: center;
     cursor: pointer;
 }
-.btn:hover {transform: scale(1.05,1.05);}
-.btn:active {transform: scale(0.95,0.95);}
+
+.btn:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.btn:active {
+    transform: scale(0.95, 0.95);
+}
+
 /* 小卡片的简单初始化 */
-.flex-card
-{
+.flex-card {
     display: flex;
     gap: 30px;
     padding: 30px;
     border-radius: 8px;
 }
+
 /* 提示框 */
-#show-info-box
-{
+#show-info-box {
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content:center;
-    align-items:flex-end;
+    justify-content: center;
+    align-items: flex-end;
     pointer-events: none;
     gap: 10px;
     z-index: 9999;
@@ -66,56 +72,137 @@ body
     top: 0;
     padding: 10px;
 }
-#show-info-box p
-{
+
+#show-info-box p {
     width: max-content;
     padding: 5px 10px;
     border-radius: 8px;
     color: white;
     font-weight: 100;
     font-size: 0.85em;
-    text-shadow: rgba(200,200,200) 0 0 15px;
+    text-shadow: rgba(200, 200, 200) 0 0 15px;
     margin-top: 50px;
     opacity: 0;
     transition: .5s;
     pointer-events: all;
     cursor: pointer;
 }
-#show-info-box p::before
-{
+
+#show-info-box p::before {
     font-weight: 700;
     font-size: 1em;
 }
+
 /* 在此添加show-info新类型的css */
-#show-info-box p[type="normal"]{background: rgba(45,45,255);box-shadow: 0 0 5px 1px rgba(45,45,200);}
-#show-info-box p[type="normal"]::before{content: '提示：';color: rgba(210,210,255);}
+#show-info-box p[type="normal"] {
+    background: rgba(45, 45, 255);
+    box-shadow: 0 0 5px 1px rgba(45, 45, 200);
+}
 
-#show-info-box p[type="success"]{background: rgba(45,225,45);box-shadow: 0 0 5px 1px rgba(45,200,45);}
-#show-info-box p[type="success"]::before{content: '成功：';color: rgba(210,255,210);}
+#show-info-box p[type="normal"]::before {
+    content: '提示：';
+    color: rgba(210, 210, 255);
+}
 
-#show-info-box p[type="warning"]{background: rgba(255, 190, 67);box-shadow: 0 0 5px 1px rgba(200, 100, 70);}
-#show-info-box p[type="warning"]::before{content: '警告：';color: rgba(255, 255, 0);}
+#show-info-box p[type="success"] {
+    background: rgba(45, 225, 45);
+    box-shadow: 0 0 5px 1px rgba(45, 200, 45);
+}
 
-#show-info-box p[type="error"]{background: rgba(255, 45, 45);box-shadow: 0 0 5px 1px rgba(200, 45, 45);}
-#show-info-box p[type="error"]::before{content: '错误：';color: rgba(255, 210, 210);}
+#show-info-box p[type="success"]::before {
+    content: '成功：';
+    color: rgba(210, 255, 210);
+}
 
-#show-info-box p:hover::before{content: '复制并关闭：';}
+#show-info-box p[type="warning"] {
+    background: rgba(255, 190, 67);
+    box-shadow: 0 0 5px 1px rgba(200, 100, 70);
+}
 
-#show-info-box p.show-info-open
-{
+#show-info-box p[type="warning"]::before {
+    content: '警告：';
+    color: rgba(255, 255, 0);
+}
+
+#show-info-box p[type="error"] {
+    background: rgba(255, 45, 45);
+    box-shadow: 0 0 5px 1px rgba(200, 45, 45);
+}
+
+#show-info-box p[type="error"]::before {
+    content: '错误：';
+    color: rgba(255, 210, 210);
+}
+
+#show-info-box p:hover::before {
+    content: '复制并关闭：';
+}
+
+#show-info-box p.show-info-open {
     margin-top: 0;
     opacity: 1;
 }
-#show-info-box p.show-info-close
-{
+
+#show-info-box p.show-info-close {
     margin-top: -50px;
     opacity: 0;
     transition: .2s;
 }
-#show-info-box p.show-info-click
-{
+
+#show-info-box p.show-info-click {
     margin-top: 0;
-    transform: scale(0.1,0.1);
+    transform: scale(0.1, 0.1);
     transition: 0.2s;
     opacity: 0;
+}
+
+
+.nav {
+    /* 导航栏 */
+    position: fixed;
+    height: 50px;
+    background-color: white;
+}
+
+.sbl {
+    /* 上边栏 */
+    display: inline-block;
+    color: black;
+    height: 50px;
+    text-decoration: none;
+    padding-left: 30px;
+    line-height: 50px;
+}
+
+.sbl:hover {
+    /* 上边栏 */
+    color: aquamarine;
+}
+
+.signin {
+    display: inline-block;
+    padding-left: 250px;
+    color: black;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#welcome {
+    /* 首页欢迎大盒子 */
+    height: 705px;
+    background-color: black;
+}
+
+#welcome>p {
+    /* 首页欢迎文字盒子 */
+    color: white;
+    text-align: center;
+    font-size: 100px;
+    line-height: 705px;
+}
+#welcome>span{
+    /* 首页欢迎图标 */
+    background-image: url(/leaftech-website/resource/images/favicon.png);
+    background-repeat: no-repeat;
+    background-position: center 100px;
 }

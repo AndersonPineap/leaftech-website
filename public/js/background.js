@@ -11,7 +11,7 @@
     /**这个变量控制粒子的最大数量 */
     const pointNum = 80;
     /**控制粒子颜色 */
-    const colorRGB = '30, 180, 20';
+    const colorRGB = '255, 255, 255';
     /**存储所有粒子的数组 */
     let points = [];
     /**鼠标控制的粒子 */
