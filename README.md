@@ -1,3 +1,9 @@
+## 更新日志
+`2023.1.12`
+- 增加`footer`（未完成）
+- 优化了`class.nav`;`id.welcome`;`main`;`section`的CSS
+- ps：js的动画`我不会用`帮我把它做成`welcome`的背景谢谢QWQ
+
 ## 文件规范
 1. 文件名不得夹带空格，如`test file.html`将是非法的，空格请使用`_`代替，如`test_file.html`
 2. 文件名在易懂的情况下尽量简单
