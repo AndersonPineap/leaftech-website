@@ -1,3 +1,11 @@
+// 全局变量请放置于此
+/**页面滚动距离 */
+var pageScrollDistance = document.documentElement.scrollTop;
+/**显示宽度 */
+var viewWidth = document.body.clientWidth;
+/**显示高度 */
+var viewHeight = document.body.clientHeight;
+
 // 所有通用函数请放置于此
 
 /**
@@ -227,3 +235,18 @@ function quickFillForm(formEle) {
     });
     return formData;
 }
+
+// 右侧底部功能栏
+window.addEventListener('scroll', ()=>{
+    pageScrollDistance = document.documentElement.scrollTop;
+    if (pageScrollDistance>=viewHeight) {
+        let outDiv = document.createElement('div');
+        let scrollButton = document.createElement('button');
+        scrollButton.innerHTML = 'back to top';
+        scrollButton.onclick = ()=>{
+            window.scrollTo(0);
+        }
+        outDiv.appendChild(scrollButton);
+        document.body.appendChild(scrollButton);
+    }
+})

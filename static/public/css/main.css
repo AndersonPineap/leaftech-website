@@ -4,6 +4,7 @@
     margin: 0;
     transition: .3s all ease-in-out;
     font-family: Sans-serif;
+    scroll-behavior: smooth;
 }
 
 /* 设置body的最小高度为窗口高度 */
@@ -153,3 +154,4 @@ body {
     transition: 0.2s;
     opacity: 0;
 }
+
