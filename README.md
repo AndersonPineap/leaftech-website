@@ -34,7 +34,6 @@
     - `js` 存储js文件
   - `resource/` 存储网站资源
     - `images/` 存储图片文件
----
 
 ### 数据库解析后的样子
 - `userdb`:
@@ -131,9 +130,8 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
 ```
 - 用户库密码使用了`md5`加密，所以`login.js`在上传数据时会先对密码进行一次`md5()`
 
----
 
-## GM.js函数说明
+### GM.js函数说明
 |函数|功能|返回值|
 |--|--|--|
 |getRandom(min,max)|获取一个从min到max的随机数|number|
@@ -149,3 +147,8 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
 2. 修复不登录可以提交文章的bug
 3. 对文章进行获取markdown源文件的获取
 4. 对文章的提交开发读取markdown文件的选项
+
+---
+
+## 使用到的外部媒体资源
+1. [来自Zondicons的svg图标](http://www.zondicons.com/)

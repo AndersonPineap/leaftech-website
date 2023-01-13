@@ -222,6 +222,7 @@ function showInfo(type = "normal", message = "message", x = null, y = null) {
         return t ? r ? u(t, n) : e(u(t, n)) : r ? o(n) : e(o(n))
     } "function" == typeof define && define.amd ? define(function () { return t }) : "object" == typeof module && module.exports ? module.exports = t : n.md5 = t
 }(this);
+
 /**
  * ### 将formEle元素内所有input的键和值快速填充至一个FormData类
  * @param formEle 通过dom获取的form元素节点
@@ -237,16 +238,16 @@ function quickFillForm(formEle) {
 }
 
 // 右侧底部功能栏
-window.addEventListener('scroll', ()=>{
-    pageScrollDistance = document.documentElement.scrollTop;
-    if (pageScrollDistance>=viewHeight) {
-        let outDiv = document.createElement('div');
-        let scrollButton = document.createElement('button');
-        scrollButton.innerHTML = 'back to top';
-        scrollButton.onclick = ()=>{
-            window.scrollTo(0);
-        }
-        outDiv.appendChild(scrollButton);
-        document.body.appendChild(scrollButton);
-    }
-})
+// window.addEventListener('scroll', ()=>{
+//     pageScrollDistance = document.documentElement.scrollTop;
+//     if (pageScrollDistance>=viewHeight) {
+//         let outDiv = document.createElement('div');
+//         let scrollButton = document.createElement('button');
+//         scrollButton.innerHTML = 'back to top';
+//         scrollButton.onclick = ()=>{
+//             window.scrollTo(0);
+//         }
+//         outDiv.appendChild(scrollButton);
+//         document.body.appendChild(scrollButton);
+//     }
+// })
