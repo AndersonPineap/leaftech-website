@@ -1,4 +1,7 @@
 ## 更新日志
+`2023.1.13`(flowelife)
+- 优化了`mian.css`中的`.nav` `#welcome`
+- `#welcom`背景(reply 2023.1.13 ps)
 `2023.1.12`
 - 增加`footer`（未完成）
 - 优化了`class.nav`;`id.welcome`;`main`;`section`的CSS

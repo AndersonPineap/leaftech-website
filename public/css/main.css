@@ -3,7 +3,8 @@
     padding: 0;
     margin: 0;
     transition: .3s all ease-in-out;
-    /* font-family: fantasy; */
+    scroll-behavior: smooth;
+    font-family: sans-serif;
 }
 
 /* 设置body的最小高度为窗口高度 */
@@ -12,15 +13,14 @@ body {
 }
 
 /* 将背景canvas的z轴设置在最底层 */
-/* #background 
+#background 
 {
-    z-index: 0;
+    z-index: -1;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(0,0,0); */
-/* display: inline;
-}  */
+    background-color: rgb(0,0,0); 
+} 
 
 /* 针对input的简单初始化 */
 .input_text {
@@ -158,11 +158,50 @@ body {
 
 
 /* 导航栏 */
+/*
 .nav {
     background-color: white;
     height: 50px;
     /* display: flex;
     justify-content: space-between; */
+/*}*/
+.nav {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    /* display: flex;
+    justify-content: space-between; */
+}
+.nav>ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    height: 50px;
+    width: fit-content;
+}
+.nav>ul>li {
+    display: flex;
+    flex: 1;
+    height: 40px;
+    width: max-content;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.nav>ul>li>a {
+    padding: 0 10px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    color: black;
 }
 .nav>a{
     text-decoration: none;
@@ -173,9 +212,13 @@ body {
 }
 .nav a:hover{
     color: aquamarine;
+    background: #333;
 }
 #signin {
-    padding-left: 50%;
+    /* padding-left: 50%; */
+    position: absolute;
+    right: 0;
+    top: 0;
     text-decoration: none;
     color: black;
     font-size: 25px;
@@ -188,17 +231,24 @@ body {
 /* 首页欢迎 */
 #welcome {
     height: 705px;
-    background-image: url(resource/images/favicon.png);
-    background-repeat: no-repeat;
-    background-position: center 100px;
-    background: #000;
-
+    /* background-image: url(resource/images/favicon.png); */
+    /* background-repeat: no-repeat; */
+    /* background-position: center 100px; */
+    /* background: #000; */
+    margin-top: 50px;
+    position: relative;
 }
-#welcome>p {
+#welcome>h1 {
+    position: absolute;
+    transform: translate(-50%,-100%);
+    left: 50%;
+    top: 50%;
     color: white;
+    font-size: 4em;
     text-align: center;
-    font-size: 100px;
-    line-height: 705px;
+}
+#welcome #background {
+    position: absolute;
 }
 
 

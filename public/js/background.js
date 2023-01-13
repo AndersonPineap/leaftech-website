@@ -14,8 +14,6 @@
     const colorRGB = '255, 255, 255';
     /**存储所有粒子的数组 */
     let points = [];
-    /**鼠标控制的粒子 */
-    let mousePoint = null;
     /**
      * ### 粒子类
      */
@@ -110,28 +108,7 @@
         });
         link();
     }
-    /**### 鼠标事件 */
-    function mouseEve() {
-        // 鼠标指针进入画布范围时若鼠标粒子不存在则创建粒子
-        canvas.addEventListener('mouseover', e => {
-            if (!mousePoint) {
-                mousePoint = new point(e.x, e.y, 0, 0, 1, 'rgba(' + colorRGB + '), 1')
-                points.push(mousePoint)
-            }
-        })
-        // 根据鼠标位置更新粒子位置
-        canvas.addEventListener('mousemove', e => {
-            mousePoint.x = e.x;
-            mousePoint.y = e.y;
-        })
-        // 鼠标移出画布位置则清除粒子
-        canvas.addEventListener('mouseout', () => {
-            mousePoint.x = null;
-            mousePoint.y = null;
-        })
-    }
 
-    mouseEve();
     createPoint();
     animate();
 
@@ -141,8 +118,6 @@
         canvas.height = window.innerHeight;
         cancelAnimationFrame(animateId);
         points = [];
-        mousePoint = null;
-        mouseEve();
         createPoint();
         animate();
     })
