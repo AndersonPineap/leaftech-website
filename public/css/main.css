@@ -173,6 +173,7 @@ body {
     top: 0;
     left: 0;
     overflow: hidden;
+    z-index: 9999;
     /* display: flex;
     justify-content: space-between; */
 }
