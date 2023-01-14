@@ -13,14 +13,25 @@
 
 <body>
     <canvas id="background"></canvas>
-    <h1>欢迎回来，{{ username }}</h1>
-    <h1>所有文章</h1>
-    <a href="/article/upload">上传文章</a>
-    <ul>
-        {% for i in articles %}
-        <li><a href="/article/{{ i['uid'] }}">{{ i['title'] }}——{{ i['editor'] }}</a></li>
-        {% endfor %}
-    </ul>
+    <nav class="nav">
+        <ul>
+            <li>
+                <a href="/">主页</a>
+            </li>
+            <li>
+                <a href="/article/upload">上传文章</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="app">
+        <h1>欢迎回来，{{ username }}</h1>
+        <h1>所有文章</h1>
+        <ul>
+            {% for i in articles %}
+            <li><a href="/article/{{ i['uid'] }}">{{ i['title'] }}——{{ i['editor'] }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 <script src="/static/public/js/GM.js"></script>
 <script src="/static/public/js/background.js"></script>

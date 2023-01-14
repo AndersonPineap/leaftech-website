@@ -1,10 +1,12 @@
 // 全局变量请放置于此
-/**页面滚动距离 */
-var pageScrollDistance = document.documentElement.scrollTop;
+/**页面滚动方向 */
+var pageScrollDirection = null;
 /**显示宽度 */
 var viewWidth = document.body.clientWidth;
 /**显示高度 */
 var viewHeight = document.body.clientHeight;
+/**顶部栏是否收缩 */
+var pageNavChanged = false;
 
 // 所有通用函数请放置于此
 
@@ -251,3 +253,53 @@ function quickFillForm(formEle) {
 //         document.body.appendChild(scrollButton);
 //     }
 // })
+/**
+ * 
+ * @param el 需要获取高度的元素
+ * @returns 高度
+ */
+function getElementTop(el) {
+    var actualTop = el.offsetTop
+    var current = el.offsetParent
+    while (current !== null) {
+        actualTop += current.offsetTop
+        current = current.offsetParent
+    }
+    return actualTop
+}
+
+/*以下是页面滚动事件*/
+var scrollAction = {x: 'undefined', y: 'undefined'}, pageScrollDirection;
+function getScrollDirection() {
+    if (typeof scrollAction.x == 'undefined') {
+        scrollAction.x = window.pageXOffset;
+        scrollAction.y = window.pageYOffset;
+    }
+    var diffX = scrollAction.x - window.pageXOffset;
+    var diffY = scrollAction.y - window.pageYOffset;
+    if (diffX < 0) {
+        // Scroll right
+        pageScrollDirection = 'right';
+    } else if (diffX > 0) {
+        // Scroll left
+        pageScrollDirection = 'left';
+    } else if (diffY < 0) {
+        // Scroll down
+        pageScrollDirection = 'down';
+    } else if (diffY > 0) {
+        // Scroll up
+        pageScrollDirection = 'up';
+    }
+    scrollAction.x = window.pageXOffset;
+    scrollAction.y = window.pageYOffset;
+}
+window.addEventListener('scroll', () => {
+    getScrollDirection();
+    if (pageScrollDirection=="down"&&!pageNavChanged){
+        document.querySelector('nav.nav').classList.add('close');
+        pageNavChanged=true;
+    } else if (pageScrollDirection=="up"&&pageNavChanged){
+        document.querySelector('nav.nav.close').classList.remove('close');
+        pageNavChanged=false;
+    }
+})
