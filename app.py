@@ -71,7 +71,6 @@ def getArticle():
     if request.method == "GET":
         return render_template('mark_editor.html')
     else:
-        print(request.form)
         try:
             editor = session["username"]
         except:
