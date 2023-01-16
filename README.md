@@ -144,9 +144,7 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
 ## 开发计划
 
 1. 登录前访问任何页面都会强制跳转到登录页面
-2. 修复不登录可以提交文章的bug
-3. 对文章进行获取markdown源文件的获取
-4. 对文章的提交开发读取markdown文件的选项
+2. 对文章的提交开发读取markdown文件的选项
 
 ---
 

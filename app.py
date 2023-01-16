@@ -1,4 +1,7 @@
-import os,json,base64,time
+import time
+from os import urandom
+from json import loads,dumps
+from base64 import b64encode,b64decode
 from hashlib import md5
 from gevent import pywsgi
 from flask import request,Flask,render_template,make_response,session,jsonify
@@ -7,7 +10,7 @@ def db_encode(db:dict,db_file:str)->bool:
     """数据库加密"""
     try:
         with open(db_file,mode="w",encoding="utf-8") as f:
-            f.write((base64.b64encode(json.dumps(db).encode("utf-8"))).decode("utf-8"))
+            f.write((b64encode(dumps(db).encode("utf-8"))).decode("utf-8"))
         return True
     except:
         return False
@@ -17,7 +20,7 @@ def db_decode(db:str)->dict:
     with open(db,mode="r",encoding="utf-8") as f:
         data = f.read()
     try:
-        return json.loads(base64.b64decode(data.encode("utf-8")).decode("utf-8"))
+        return loads(b64decode(data.encode("utf-8")).decode("utf-8"))
     except:
         return {}
 
@@ -26,7 +29,7 @@ userdb = db_decode('userdb')
 articledb = db_decode('articledb')
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = urandom(24)
 
 @app.route('/')
 def home():
