@@ -82,7 +82,7 @@ def getArticle():
     """编辑和上传文章"""
     if request.method == "GET":
         return render_template('mark_editor.html')
-    else:
+    elif request.method == "POST":
         try:
             editor = session["username"]
         except:
@@ -109,6 +109,8 @@ def getArticle():
                 "code": 300
             }
         return jsonify(res)
+    else:
+        return None
 
 
 @app.route('/article/<uid>', methods=['GET'])
@@ -131,7 +133,7 @@ def sendArticle(uid):
 @app.route('/article/', methods=['GET'])
 def articlelist():
     """获取所有文章列表"""
-    return '<h1>开发中</h1>'
+    return render_template('article_list.html',articles=db_decode('articledb').values())
 
 
 @app.route('/search/<keyword>', methods=['GET'])
@@ -151,9 +153,11 @@ def task():
 
 @app.route('/userdb', methods=['GET','POST'])
 def userdb_set():
-    if request.method == 'GET' and session['admin']:
+    if session['admin']:
+        return render_template('404.html')
+    if request.method == 'GET':
         return render_template('userdb.html')
-    elif session['admin']:
+    elif request.method == 'POST':
         set_type = request.form['type']
         if set_type == 'create':
             pass
@@ -167,9 +171,11 @@ def userdb_set():
             }
             return jsonify(res)
     else:
-        return render_template('404.html')
+        return None
 
 
 if __name__ == "__main__":
     server = pywsgi.WSGIServer(('0.0.0.0', 8080), app)
+    ip,port = server.address
+    print(f"监听服务已启动于{ip}:{port}\n按下Ctrl+C以停止")
     server.serve_forever()
