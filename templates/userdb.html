@@ -7,32 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/public/css/main.css">
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
-    <title>404: page not found</title>
-    <style>
-        div {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgb(17, 17, 17);
-            box-shadow: 0 0 15px 1px black;
-        }
-
-        div h1 {
-            color: rgb(0, 180, 0);
-            text-shadow: rgb(0, 50, 0) 0 0 20px;
-            text-align: center;
-        }
-
-        div p {
-            text-shadow: rgba(80, 80, 80) 0 0 20px;
-            text-align: center;
-            color: white;
-        }
-    </style>
+    <title>账号数据</title>
 </head>
 
 <body>
@@ -48,11 +23,16 @@
             <li>
                 <a href="/task?type=all">活动任务</a>
             </li>
+            <li>
+                <a href="/pushtask">发布活动任务</a>
+            </li>
+            <li>
+                <a href="/userdb">账号管理</a>
+            </li>
         </ul>
     </nav>
-    <div class="flex-card">
-        <h1>Error: 404</h1>
-        <p>Page not found.</p>
+    <div id="app">
+        
     </div>
 </body>
 <script src="/static/public/js/GM.js"></script>

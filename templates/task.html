@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/public/css/main.css">
-    <link rel="stylesheet" href="/static/public/css/index.css">
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
-    <title>欢迎，{{ username }}</title>
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <title>{{ list_type }}</title>
 </head>
-
 <body>
     <canvas id="background"></canvas>
     <nav class="nav">
@@ -24,27 +21,9 @@
             <li>
                 <a href="/task?type=all">活动任务</a>
             </li>
-            {% if admin == True %}
-            <li>
-                <a href="/pushtask">发布活动任务</a>
-            </li>
-            <li>
-                <a href="/userdb">账号管理</a>
-            </li>
-            {% endif %}
         </ul>
     </nav>
-    <div id="app">
-        <h1>欢迎回来，{{ username }}</h1>
-        <h1>所有文章</h1>
-        <ul>
-            {% for i in articles %}
-            <li><a href="/article/{{ i['uid'] }}">{{ i['title'] }}——{{ i['editor'] }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
 </body>
 <script src="/static/public/js/GM.js"></script>
 <script src="/static/public/js/background.js"></script>
-
 </html>

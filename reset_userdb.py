@@ -3,7 +3,8 @@ from hashlib import md5
 
 user = {
     "admin": {
-        "password": md5("password".encode("utf-8")).hexdigest()
+        "password": md5("password".encode("utf-8")).hexdigest(),
+        "admin": True
     }
 }
 user = json.dumps(user)

@@ -24,6 +24,7 @@
             display: flex;
             flex-direction: row;
             overflow: hidden;
+            margin-top: 40px;
         }
 
         body>main>div.flex-card {
@@ -57,6 +58,19 @@
 
 <body>
     <canvas id="background"></canvas>
+    <nav class="nav">
+        <ul>
+            <li>
+                <a href="/">主页</a>
+            </li>
+            <li>
+                <a href="/article/upload">上传文章</a>
+            </li>
+            <li>
+                <a href="/task?type=all">活动任务</a>
+            </li>
+        </ul>
+    </nav>
     <main>
         <div class="flex-card form">
             <form id="articleData">
