@@ -40,14 +40,15 @@
 
 ```json
 {
-  "username-1":{
-    // 目前数据库仅存储了密码，要存储其他数据请在app.py里编写相应方法，预计将会添加article成员以保存该用户编写的所有文章
+  "admin":{
     "password": "password",
+    "admin": true,
     "...": "..."
   },
   "...":{},
   "username-n":{
     "password": "password",
+    "admin": false,
     "...": "..."
   }
 }
@@ -140,13 +141,3 @@ function getRandom(min, max) {return Math.random() * (max - min) + min;}
 |quickFillForm|将formEle元素内所有input的键和值快速填充至一个FormData类|FormData|
 
 ---
-
-## 开发计划
-
-1. 登录前访问任何页面都会强制跳转到登录页面
-2. 对文章的提交开发读取markdown文件的选项
-
----
-
-## 使用到的外部媒体资源
-1. [来自Zondicons的svg图标](http://www.zondicons.com/)
