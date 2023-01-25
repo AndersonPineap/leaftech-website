@@ -1,3 +1,5 @@
 __pycache__
 articledb
 taskdb
+userdb
+*.pycs
