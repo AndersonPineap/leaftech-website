@@ -69,6 +69,14 @@
             <li>
                 <a href="/task?type=all">活动任务</a>
             </li>
+            {% if admin == True %}
+            <li>
+                <a href="/pushtask">发布活动任务</a>
+            </li>
+            <li>
+                <a href="/userdb">账号管理</a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
     <main>
@@ -94,6 +102,7 @@
         </div>
     </main>
 </body>
+<script src="/static/public/js/socket.min.js"></script>
 <script src="/static/public/js/GM.js"></script>
 <script src="/static/public/js/background.js"></script>
 <script src="/static/public/js/highlight.min.js"></script>
