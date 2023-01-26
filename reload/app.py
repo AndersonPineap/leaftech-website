@@ -38,10 +38,9 @@ app.secret_key = urandom(24)
 socketio = SocketIO(app)
 
 
-@socketio.on('connect', namespace='/all')
+@socketio.on('connect', namespace='/message')
 def socket_connect():
     pass
-    return None
 
 
 @app.route('/', methods=['GET'])
