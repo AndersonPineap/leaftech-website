@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
+    <title>所有文章</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        body>div:first-of-type {
+            width: 95%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        body>ul {
+            display: flex;
+            width: 95%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            padding: 0;
+            list-style-type: none;
+            gap: 10px;
+        }
+
+        body>ul>li {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+            padding: 10px 15px;
+            border-radius: 8px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="search" name="search" id="search">
+        <input type="submit" id="submit" value="查询">
+    </div>
+    <ul></ul>
+    <ol></ol>
+</body>
+<script src="/static/public/js/socket.min.js"></script>
+<script src="/static/public/js/GM.js"></script>
+<script>
+    let searchBox = document.querySelector("#search");
+    let submit = document.querySelector("#submit");
+    let output = document.querySelector("ul");
+    let index = document.querySelector("ol");
+    let start = 0;
+    submit.addEventListener('click', () => {
+        let keywors = searchBox.value;
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', `api/article/search?start=${start}&keywords=${keywors}`);
+        xhr.send();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                let data = JSON.parse(xhr.responseText);
+                output.innerHTML = ""
+                data['data'].forEach(e => {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<a href="/article/${e['_id']}">${e['title']}</a>`
+                    output.appendChild(li);
+                });
+                let pages = data['allDatalen'] % 20 == 0 ? data['allDatalen'] / 20 : Math.floor(data['allDatalen'] / 20) + 1;
+            }
+        }
+    })
+    submit.click();
+</script>
+
+</html>

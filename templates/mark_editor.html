@@ -8,11 +8,20 @@
     <link rel="stylesheet" href="/static/public/css/form.css">
     <link rel="stylesheet" href="/static/public/css/github-dark.min.css">
     <link rel="stylesheet" href="/static/public/css/main.css">
-    <link rel="stylesheet" href="/static/public/css/form.css">
     <link rel="stylesheet" href="/static/public/css/markdown.css">
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
     <title>markdown文章编辑器</title>
+    <script>
+        if (window.self == top.window) {
+            window.top.location = '/'
+        }
+    </script>
     <style>
+        body,
+        html {
+            background: transparent;
+        }
+
         body>main {
             position: absolute;
             top: 50%;
@@ -24,7 +33,6 @@
             display: flex;
             flex-direction: row;
             overflow: hidden;
-            margin-top: 40px;
         }
 
         body>main>div.flex-card {
@@ -56,29 +64,8 @@
     </style>
 </head>
 
-<body>
+<body uptype="{{ uptype }}" {%if uptype=="update" %}artid={{ id }}{%endif%}>
     <canvas id="background"></canvas>
-    <nav class="nav">
-        <ul>
-            <li>
-                <a href="/">主页</a>
-            </li>
-            <li>
-                <a href="/article/upload">上传文章</a>
-            </li>
-            <li>
-                <a href="/task?type=all">活动任务</a>
-            </li>
-            {% if admin == True %}
-            <li>
-                <a href="/pushtask">发布活动任务</a>
-            </li>
-            <li>
-                <a href="/userdb">账号管理</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
     <main>
         <div class="flex-card form">
             <form id="articleData">
@@ -99,12 +86,11 @@
         <div>
             <h3>预览</h3>
             <div id="output" class="markdown">
-        </div>
+            </div>
     </main>
 </body>
-<script src="/static/public/js/socket.min.js"></script>
 <script src="/static/public/js/GM.js"></script>
-<script src="/static/public/js/background.js"></script>
+<script src="/static/public/js/socket.min.js"></script>
 <script src="/static/public/js/highlight.min.js"></script>
 <script src="/static/public/js/marked.min.js"></script>
 <script src="/static/public/js/mark_editor.js"></script>

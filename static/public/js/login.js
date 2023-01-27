@@ -15,9 +15,9 @@ document.getElementById('submit').addEventListener('click', (e) => {
         }
     }
     if (!finish) return;
-    formData.append("username", inputs[0].value);
-    formData.append("password", md5(inputs[1].value));
-    xhr.open('post', '/login');
+    formData.append("usr", inputs[0].value);
+    formData.append("pwd", md5(inputs[1].value));
+    xhr.open('post', '/api/account/sign');
     xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
             let status = xhr.responseText;
@@ -26,11 +26,7 @@ document.getElementById('submit').addEventListener('click', (e) => {
                 showInfo("success", `欢迎回来，${inputs[0].value}!`);
                 setTimeout(() => { window.open('/', '_self'); }, 1000);
             } else if (status["code"] == 300) {
-                showInfo("error", "密码错误");
-                inputs[1].focus();
-            } else if (status["code"] == 400) {
-                showInfo("error", "用户名不存在");
-                inputs[0].focus();
+                showInfo("error", "账号或密码错误");
             } else {
                 showInfo("error", "未知错误");
             }

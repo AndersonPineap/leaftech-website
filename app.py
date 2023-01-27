@@ -1,10 +1,12 @@
 import time
+import pymongo
 from os import urandom
 from json import loads, dumps
 from base64 import b64encode, b64decode
 from hashlib import md5
-from flask import request, Flask, render_template, make_response, session, jsonify
+from flask import request, Flask, render_template, session, jsonify
 from flask_socketio import SocketIO
+from api import api_blueprint
 
 
 def db_encode(db: dict, db_file: str) -> bool:
@@ -35,6 +37,8 @@ print("完成")
 
 app = Flask(__name__)
 app.secret_key = urandom(24)
+app.register_blueprint(api_blueprint)
+print(app.blueprints)
 socketio = SocketIO(app)
 
 
@@ -191,6 +195,7 @@ def userdb_set():
 
 if __name__ == "__main__":
     try:
+        print(app.url_map)
         ip, port = ("0.0.0.0", 8080)
         print(f"监听服务将启动于{ip}:{port}\n按下Ctrl+C以停止")
         socketio.run(app, host=ip, port=port)
