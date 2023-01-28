@@ -2,7 +2,8 @@ let output = document.getElementById("output");
 let input = document.getElementById("input");
 let input_t = document.getElementById('title')
 let ifms = document.querySelectorAll('iframe');
-let uptype = document.querySelector('body').getAttribute('uptype')
+let uptype = document.querySelector('body').getAttribute('uptype');
+top.document.title = (uptype=="new"?"新建文章":"编辑 "+input_t.value);
 function re() {
     ifms.forEach(ele => {
         let w = ele.clientWidth;
@@ -12,6 +13,9 @@ function re() {
     console.log('finish');
 }
 window.addEventListener('resize', re);
+input_t.addEventListener('change', ()=>{
+    top.document.title = (uptype=="new"?"新建 ":"编辑 ")+input_t.value;
+})
 input.addEventListener('change', () => {
     let data = input.value;
     output.innerHTML = marked.parse(data);
@@ -74,5 +78,5 @@ document.getElementById("submit").addEventListener('click', (e) => {
     xhr.send(form);
 })
 document.getElementById("cancel").addEventListener('click', () => {
-    window.open("/home", "_self");
+    window.history.back(-1);
 })

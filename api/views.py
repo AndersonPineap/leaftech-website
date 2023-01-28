@@ -29,20 +29,30 @@ def handle_account_sign():
         return jsonify({"code": 200})
     return jsonify({"code": 300})
 
+@api_blueprint.route('/account/signout', methods=['POST'])
+def handle_account_sign_out():
+    try:
+        global session
+        session.clear()
+        return jsonify({"status": 200, "result": True})
+    except:
+        return jsonify({"status": 500, "result": False})
 
 @api_blueprint.route('/account/create', methods=['POST'])
 def handle_account_create():
-    database["user"].insert_one({
-        'username': request.form['username'],
-        'password': request.form['password'],
-        'admin': request.form['admin'],
-        'uplaod-article': [],
-        'upload-code-pre': [],
-        'task': [],
-        'avatar': 'default.jpg'
-    })
-    return jsonify({"status": 200, "result": "ok"})
-
+    try:
+        database["user"].insert_one({
+            'username': request.form['username'],
+            'password': request.form['password'],
+            'admin': request.form['admin'],
+            'uplaod-article': [],
+            'upload-code-pre': [],
+            'task': [],
+            'avatar': 'default.jpg'
+        })
+        return jsonify({"status": 200, "result": "ok"})
+    except:
+        return jsonify({"status": 500, "result": "username dose exist."})
 
 @api_blueprint.route('/account/search', methods=['GET'])
 def handle_account_search():
@@ -101,7 +111,7 @@ def handle_article_upload():
             return jsonify({"code": 200})
         elif uptype == "update":
             id = request.form['id']
-            if author == database.article.find_one({"_id": ObjectId(id)})['author']:
+            if author == database.article.find_one({"_id": ObjectId(id)})['author'] or session['user']['admin']:
                 database.article.update_one({"_id": ObjectId(id)}, {
                                             "$set": {"title": title, "article": article}})
                 return jsonify({"code": 200})
@@ -109,40 +119,57 @@ def handle_article_upload():
     except:
         return jsonify({"code": 300})
 
+@api_blueprint.route('/article/delete', methods=['POST'])
+def handle_article_delete():
+    try:
+        id = request.form['id']
+        if session['user']['username'] == database.article.find_one({"_id": ObjectId(id)})['author'] or session['user']['admin']:
+            database.article.delete_one({"_id": ObjectId(id)})
+            return jsonify({"code": 200})
+        return jsonify({"code": 400})
+    except:
+        return jsonify({"code": 500})
 
 @api_blueprint.route('/article/get', methods=['GET'])
 def handle_article_get():
-    id = request.args.get('id')
-    data = database.article.find_one({"_id": ObjectId(id)})
-    if session['user']['username'] == data['author']:
-        data['edit'] = True
-    else:
-        data['edit'] = False
-    data = json.loads(json.dumps(data, cls=bsonEncoder))
-    return jsonify(data)
+    try:
+        id = request.args.get('id')
+        data = database.article.find_one({"_id": ObjectId(id)})
+        if session['user']['username'] == data['author'] or session['user']['admin']:
+            data['edit'] = True
+        else:
+            data['edit'] = False
+        data = json.loads(json.dumps(data, cls=bsonEncoder))
+        return jsonify(data)
+    except:
+        return 404
 
 
 @api_blueprint.route('/article/search', methods=['GET'])
 def handle_article_search():
-    keywords = request.args.get('keywords')
-    if keywords == None or keywords == "":
-        keywords = ".*"
-    start = int(request.args.get('start'))
-    l = database.article.count_documents(
-        {"title": re.compile(keywords, re.IGNORECASE)})
-    d = database.article.find({"title": re.compile(keywords, re.IGNORECASE)}, {
-                              "article": 0}).skip(start).limit(20)
-    li = []
-    for i in d:
-        li.append(i)
-    res = {
-        "status": 200,
-        "result": "ok",
-        "allDatalen": l,
-        "data": json.loads(json.dumps(li, cls=bsonEncoder))
-    }
-    if res['allDatalen']-(start+20) >= 0:
-        res['next'] = start+20
-    else:
-        res['next'] = None
-    return jsonify(res)
+    try:
+        keywords = request.args.get('keywords')
+        if keywords == None or keywords == "":
+            keywords = ".*"
+        start = int(request.args.get('start'))
+        regex = re.compile(keywords, re.IGNORECASE)
+        l = database.article.count_documents(
+            {"$or":[{"title": regex},{"author": regex}]})
+        d = database.article.find({"$or":[{"title": regex},{"author": regex}]}, {
+                                  "article": 0}).skip(start).limit(20)
+        li = []
+        for i in d:
+            li.append(i)
+        res = {
+            "status": 200,
+            "result": "ok",
+            "allDatalen": l,
+            "data": json.loads(json.dumps(li, cls=bsonEncoder))
+        }
+        if res['allDatalen']-(start+20) >= 0:
+            res['next'] = start+20
+        else:
+            res['next'] = None
+        return jsonify(res)
+    except:
+        return jsonify({"status": 500,"result": "bad request"})
