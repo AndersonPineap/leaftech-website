@@ -16,7 +16,10 @@
         }
     </script>
     <style>
-        .btn {width: 100%;}
+        .btn {
+            width: 100%;
+        }
+
         #temp-data {
             position: fixed;
             top: -1000px;
@@ -48,7 +51,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 0 20px 1px rgb(17, 17, 17);
-            max-width: 300px;
+            max-width: 250px;
         }
 
         #nav-bar ul {
@@ -109,6 +112,20 @@
             align-content: center;
             width: auto;
             overflow: hidden;
+        }
+
+        #article-title {
+            letter-spacing: 0.1em;
+            color: rgb(0, 180, 0);
+            font-weight: 800;
+            font-size: 2em;
+            text-shadow: rgb(0, 50, 0) 0 0 20px;
+        }
+        #article-title>sub {
+            letter-spacing: normal;
+            color: white;
+            font-weight: 400;
+            text-shadow: rgba(100, 100, 100) 0 0 20px;
         }
     </style>
 </head>

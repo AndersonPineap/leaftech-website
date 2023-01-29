@@ -51,8 +51,8 @@ xhr.onreadystatechange = () => {
                         if (xhr.readyState===4){
                             let t = JSON.parse(xhr.responseText);
                             if (t["code"]==200){
-                                alert("成功");
-                                window.location = "/article"
+                                showInfo("success", "成功");
+                                setTimeout(()=>{window.location = "/article"},500)
                                 return;
                             }
                             alert("失败")

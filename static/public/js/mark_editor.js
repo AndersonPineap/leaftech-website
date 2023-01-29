@@ -68,6 +68,9 @@ document.getElementById("submit").addEventListener('click', (e) => {
                 showInfo('success', `上传成功`);
                 input.value = '';
                 input_t.value = '';
+                setTimeout(() => {
+                    window.history.back(-1);
+                }, 500);
             } else if (resp["code"] == 300) {
                 showInfo('error', '服务器读写错误');
             } else {

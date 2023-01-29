@@ -164,3 +164,21 @@ document.querySelectorAll("#topnav ul li").forEach(e=>{
         app.setAttribute('src', e.getAttribute('href'))
     })
 })
+// window.setInterval("setIframe()",200)
+// function setIframe(){
+//     try{
+//         app.style.height = app.contentWindow.document.documentElement.scrollHeight+"px";
+//     }catch(ex){}
+// }
+
+// // const observe = new MutationObserver((ml,obs)=>{
+// //     for(let m of ml){
+// //         if (m.type=="attributes" && m.attributeName=="src"){
+// //             try{
+// //                 setTimeout(()=>{app.style.height = app.contentWindow.document.documentElement.scrollHeight+"px";},1000)
+// //                 console.log("a")
+// //             }catch(ex){}
+// //         }
+// //     }
+// // })
+// // observe.observe(app, {attributes: true})
