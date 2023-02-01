@@ -1,4 +1,4 @@
-import 'socket.min.js'
+import './socket.min.js'
 document.querySelector("#submit").onclick = (e) => {
     let form = new FormData(document.querySelector("form"));
     for (let ele of form.values()) {
