@@ -19,6 +19,7 @@ body {
     height: 50px;
     box-shadow: 0 0 10px 1px black;
 }
+
 #topnav>ul {
     display: flex;
     flex-direction: row;
@@ -30,7 +31,9 @@ body {
     list-style-type: none;
     height: 50px;
     width: auto;
+    user-select: none;
 }
+
 #topnav>ul>li {
     display: flex;
     flex-direction: row;
@@ -44,11 +47,49 @@ body {
     font-family: icomoon, sans-serif;
     color: white;
     cursor: pointer;
+    transition: .2s ease-in-out;
 }
+
 #topnav>ul>li:hover {
     color: rgb(0, 180, 0);
     background: rgb(40, 40, 40);
 }
+
 #topnav.close {
     top: -50px;
+}
+
+#socket-message-box {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: rgba(17, 17, 17);
+    box-shadow: 0 0 10px 1px black;
+    border-radius: 8px;
+    padding: 10px 10px;
+    width: 400px;
+    user-select: none;
+    cursor: pointer;
+    transform: translateX(200%);
+    overflow: hidden;
+}
+
+#socket-message-box:hover {
+    transform: scale(1.01);
+    background-color: rgba(30, 30, 30);
+}
+
+#socket-message-box:active {
+    transform: scale(0.99);
+    transition: .1s;
+}
+
+.active {
+    transform: translateX(0) !important;
+}
+#socket-message-box h3 {font-family: icomoon, sans-serif;}
+#socket-message-box p:first-of-type {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
 }

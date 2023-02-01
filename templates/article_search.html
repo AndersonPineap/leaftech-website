@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/public/css/main.css">
-    <link rel="stylesheet" href="/static/public/css/form.css">k
-    <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
-    <title>所有文章</title>
+    <link rel="stylesheet" href="/static/public/css/form.css">
     <script>
         if (window.self == top.window) {
             window.top.location = '/'
@@ -54,16 +52,40 @@
             border-radius: 8px;
             width: 100%;
         }
-
-        body>ul>li>a {
+        body>ol {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
             width: 100%;
-            color: rgb(0, 150, 0);
+            list-style-type: none;
+            gap: 10px;
         }
-
-        body>ul>li>a:hover {
-            color: rgb(0, 215, 0);
+        body>ol>li {
+            color: white;
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: icomoon, sans-serif;
+            cursor: pointer;
+            text-shadow: rgba(100, 100, 100) 0 0 20px;
+            user-select: none;
+            box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
-
+        body>ol>li:hover {
+            transform: scale(1.05);
+            text-shadow: rgba(150, 150, 150) 0 0 5px;
+        }
+        body>ol>li>input[type="button"]{
+            width: fit-content;
+            margin-left: 10px;
+        }
         #search {
             width: 100%;
             color: white;
@@ -94,15 +116,48 @@
         #submit {
             width: 15%;
         }
+        input[type='number'] {
+            width: 4em;
+            color: white;
+            background: rgb(15, 15, 15);
+            border: 1px transparent solid;
+            box-shadow: inset 0 0 15px 1px rgb(10, 10, 10);
+            text-shadow: rgba(100, 100, 100) 0 0 20px;
+            outline: none;
+            border-radius: 2px;
+            padding: 0 10px;
+            margin-inline: 5px;
+            font-size: 1em;
+            font-weight: 400;
+        }
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type='number']{
+            -moz-appearance: none;
+            appearance: none;
+        }
+        #jump:hover {
+            transform: none;
+        }
     </style>
 </head>
 
 <body>
     <div>
         <input type="search" name="search" id="search" placeholder="输入查询目标标题或作者名称中的文本或符合的正则,为空显示所有">
+        <select name="sort" style="width: fit-content;" id="sort">
+            <option value="time-down">时间正序(最新)</option>
+            <option value="time-up">时间倒序(最老)</option>
+            <option value="name-up">名称正序(A-Z)</option>
+            <option value="name-down">名称倒序(Z-A)</option>
+            <option value="author-up">作者正序(Z-A)</option>
+            <option value="author-down">作者倒序(Z-A)</option>
+        </select>
         <input type="submit" id="submit" value="查询" class="btn">
     </div>
-    <ul></ul>
+    <ul><span class="loading"></span></ul>
     <ol></ol>
 </body>
 <script src="/static/public/js/socket.min.js"></script>

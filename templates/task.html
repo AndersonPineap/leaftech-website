@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <link rel="stylesheet" href="/static/public/css/form.css">
+    <script>
+        if (window.self == top.window) {
+            window.top.location = '/'
+        }
+    </script>
+    <style>
+        body {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: left;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    {%if admin%}
+    <div class="flex-box" style="justify-content: center;align-items: center;">
+        <input id="create-task" type="submit" value="发布活动任务" class="btn" style="width: 50%;">
+    </div>
+    {%endif%}
+    <div class="flex-box">
+        <h1>今日份任务：</h1>
+        <div>
+            <h2>TEST</h2>
+            <p>test test test</p>
+            <ol>
+                <li>11111</li>
+                <li>22222</li>
+                <li>33333</li>
+            </ol>
+        </div>
+    </div>
+    <div class="flex-box">
+        <h1>过去的任务</h1>
+        <div></div>
+    </div>
+</body>
+<script src="/static/public/js/GM.js"></script>
+<script src="/static/public/js/task.js"></script>
+
+</html>

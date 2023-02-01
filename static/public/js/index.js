@@ -123,41 +123,41 @@
 }());
 var app = document.querySelector("#app")
 
-/*以下是页面滚动事件*/
-var scrollAction = {x: 'undefined', y: 'undefined'}, pageScrollDirection;
-function getScrollDirection() {
-    if (typeof scrollAction.x == 'undefined') {
-        scrollAction.x = window.pageXOffset;
-        scrollAction.y = window.pageYOffset;
-    }
-    var diffX = scrollAction.x - window.pageXOffset;
-    var diffY = scrollAction.y - window.pageYOffset;
-    if (diffX < 0) {
-        // Scroll right
-        pageScrollDirection = 'right';
-    } else if (diffX > 0) {
-        // Scroll left
-        pageScrollDirection = 'left';
-    } else if (diffY < 0) {
-        // Scroll down
-        pageScrollDirection = 'down';
-    } else if (diffY > 0) {
-        // Scroll up
-        pageScrollDirection = 'up';
-    }
-    scrollAction.x = window.pageXOffset;
-    scrollAction.y = window.pageYOffset;
-}
-window.addEventListener('scroll', () => {
-    getScrollDirection();
-    if (pageScrollDirection=="down"&&!pageNavChanged){
-        document.querySelector('#topnav').classList.add('close');
-        pageNavChanged=true;
-    } else if (pageScrollDirection=="up"&&pageNavChanged){
-        document.querySelector('#topnav.close').classList.remove('close');
-        pageNavChanged=false;
-    }
-})
+// /*以下是页面滚动事件*/
+// var scrollAction = {x: 'undefined', y: 'undefined'}, pageScrollDirection;
+// function getScrollDirection() {
+//     if (typeof scrollAction.x == 'undefined') {
+//         scrollAction.x = window.pageXOffset;
+//         scrollAction.y = window.pageYOffset;
+//     }
+//     var diffX = scrollAction.x - window.pageXOffset;
+//     var diffY = scrollAction.y - window.pageYOffset;
+//     if (diffX < 0) {
+//         // Scroll right
+//         pageScrollDirection = 'right';
+//     } else if (diffX > 0) {
+//         // Scroll left
+//         pageScrollDirection = 'left';
+//     } else if (diffY < 0) {
+//         // Scroll down
+//         pageScrollDirection = 'down';
+//     } else if (diffY > 0) {
+//         // Scroll up
+//         pageScrollDirection = 'up';
+//     }
+//     scrollAction.x = window.pageXOffset;
+//     scrollAction.y = window.pageYOffset;
+// }
+// window.addEventListener('scroll', () => {
+//     getScrollDirection();
+//     if (pageScrollDirection=="down"&&!pageNavChanged){
+//         document.querySelector('#topnav').classList.add('close');
+//         pageNavChanged=true;
+//     } else if (pageScrollDirection=="up"&&pageNavChanged){
+//         document.querySelector('#topnav.close').classList.remove('close');
+//         pageNavChanged=false;
+//     }
+// })
 
 document.querySelectorAll("#topnav ul li").forEach(e=>{
     e.addEventListener("click", ()=>{
@@ -182,3 +182,5 @@ document.querySelectorAll("#topnav ul li").forEach(e=>{
 // //     }
 // // })
 // // observe.observe(app, {attributes: true})
+import'./socket.min.js'
+const socketio = io();

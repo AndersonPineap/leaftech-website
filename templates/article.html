@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="/static/public/css/main.css">
     <link rel="stylesheet" href="/static/public/css/markdown.css">
     <link rel="stylesheet" href="/static/public/css/github-dark.min.css">
-    <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
-    <title></title>
     <script>
         if (window.self == top.window) {
             window.top.location = '/'
@@ -17,7 +15,7 @@
     </script>
     <style>
         .btn {
-            width: 100%;
+            width: 95%;
         }
 
         #temp-data {
@@ -43,7 +41,7 @@
             align-items: center;
             position: sticky;
             height: fit-content;
-            top: 60px;
+            top: 0px;
             left: 0;
             gap: 10px;
             padding: 15px;
@@ -52,10 +50,21 @@
             -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 0 20px 1px rgb(17, 17, 17);
             max-width: 250px;
+            min-width: 180px;
         }
-
+        #nav-bar .btn {color: black;}
         #nav-bar ul {
             list-style-type: none;
+        }
+
+        #nav-bar>ul {
+            width: 95%;
+            max-height: 40vh;
+            overflow: auto;
+            position: relative;
+        }
+
+        #nav-bar>ul ul {
             margin-left: 10px;
         }
 
@@ -121,6 +130,7 @@
             font-size: 2em;
             text-shadow: rgb(0, 50, 0) 0 0 20px;
         }
+
         #article-title>sub {
             letter-spacing: normal;
             color: white;
@@ -134,11 +144,12 @@
     <div id="app">
         <div id="nav-bar">
             <input type="button" value="下载源文件" id="download" class="btn">
-            <ul></ul>
+            <input type="button" value="返回" class="btn">
+            <ul><span class="loading"></span></ul>
         </div>
         <div id="main">
-            <h1 id="article-title"></h1>
-            <div id="article-output" class="markdown"></div>
+            <h1 id="article-title"><span class="loading"></span></h1>
+            <div id="article-output" class="markdown"><span class="loading"></span></div>
         </div>
     </div>
 

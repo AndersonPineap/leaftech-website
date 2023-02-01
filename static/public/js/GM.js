@@ -1,12 +1,12 @@
 // 全局变量请放置于此
 /**页面滚动方向 */
-var pageScrollDirection = null;
+// var pageScrollDirection = null;
 /**显示宽度 */
 var viewWidth = document.body.clientWidth;
 /**显示高度 */
 var viewHeight = document.body.clientHeight;
 /**顶部栏是否收缩 */
-var pageNavChanged = false;
+// var pageNavChanged = false;
 
 // 所有通用函数请放置于此
 

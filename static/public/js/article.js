@@ -1,13 +1,14 @@
+let historyDeep = -1;
+document.querySelectorAll('div>input[type="button"]')[1].onclick = ()=>{window.history.go(historyDeep)}
 const articleDiv = document.getElementById('article-output');
 let article = '';
 let xhr = new XMLHttpRequest();
 xhr.open('get', '/api/article/get?id=' + document.getElementById('temp-data').value);
-xhr.send();
 xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
         let d = JSON.parse(xhr.responseText);
         document.querySelector("#article-title").innerHTML = `${d['title']}<sub> by: ${d['author']}</sub>`;
-        top.document.title = d['title']
+        top.document.title = `${d['title']}—${d['author']}`
         article = d['article'];
         articleDiv.innerHTML = marked.parse(article);
         hljs.highlightAll();
@@ -31,15 +32,15 @@ xhr.onreadystatechange = () => {
             t.type = "button"
             t.className = 'btn';
             t.value = "修改"
-            t.onclick = ()=>{
-                window.location = "/article/editor?type=update&id="+d['_id'];
+            t.onclick = () => {
+                window.location = "/article/editor?type=update&id=" + d['_id'];
                 console.log('done')
             }
             let b = document.createElement('input');
             b.type = "button"
             b.className = 'btn';
             b.value = "删除"
-            b.onclick = ()=>{
+            b.onclick = () => {
                 s = confirm("确定删除此文章吗(此操作不可逆，建议在操作前下载源文件进行备份处理)？");
                 if (s) {
                     let xhr = new XMLHttpRequest();
@@ -47,12 +48,12 @@ xhr.onreadystatechange = () => {
                     fd.append('id', d['_id']);
                     xhr.open('post', '/api/article/delete');
                     xhr.send(fd)
-                    xhr.onreadystatechange = ()=>{
-                        if (xhr.readyState===4){
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === 4) {
                             let t = JSON.parse(xhr.responseText);
-                            if (t["code"]==200){
+                            if (t["code"] == 200) {
                                 showInfo("success", "成功");
-                                setTimeout(()=>{window.location = "/article"},500)
+                                setTimeout(() => { window.location = "/article" }, 500)
                                 return;
                             }
                             alert("失败")
@@ -60,12 +61,12 @@ xhr.onreadystatechange = () => {
                     }
                 }
             }
-            document.querySelector("#nav-bar").insertBefore(t,document.querySelector("#nav-bar ul"))
-            document.querySelector("#nav-bar").insertBefore(b,document.querySelector("#nav-bar ul"))
+            document.querySelector("#nav-bar").insertBefore(t, document.querySelector("#nav-bar ul"))
+            document.querySelector("#nav-bar").insertBefore(b, document.querySelector("#nav-bar ul"))
         }
         /**文章中所有h标签*/
         const articleTitles = articleDiv.querySelectorAll('h1,h2,h3,h4,h5,h6');
-        const titleHeight = []; // 所有标题距离顶部的距离
+        var titleHeight = []; // 所有标题距离顶部的距离
         let nav_bar = document.getElementById('nav-bar').querySelector('ul');
         let articleBarDeep = { 'h1': 1, 'h2': 2, 'h3': 3, 'h4': 4, 'h5': 5, 'h6': 6 };
         let lastDeep = 1;
@@ -95,11 +96,12 @@ xhr.onreadystatechange = () => {
             a.click()
             URL.revokeObjectURL(url);
         })
-        console.log(titleHeight)
         // 滚动定位
         let linkBtn = document.querySelectorAll('#nav-bar ul li a');
         let nowLink = 0;
+        let tmp = null;
         linkBtn[nowLink].classList.add('active');
+        linkBtn.forEach(e=>{e.addEventListener('click',()=>{if(!e.classList.contains('now')){historyDeep-=1;e.classList.add('now');tmp.classList.remove('now');tmp=e;}})})
         window.onscroll = (e) => {
             // let margin = pageNavChanged ? 50 : 0;
             let margin = 0;
@@ -107,10 +109,20 @@ xhr.onreadystatechange = () => {
             if (titleHeight[nowLink + 1] - margin - scrollTop <= 0) {
                 linkBtn[nowLink].classList.remove('active');
                 linkBtn[nowLink + 1].classList.add('active');
+                nav_bar.scrollTo({
+                    top: linkBtn[nowLink + 1].offsetTop,
+                    left: linkBtn[nowLink + 1].offsetLeft,
+                    behavior: 'smooth'
+                })
                 nowLink++;
             } else if (titleHeight[nowLink - 1] + margin - scrollTop >= 0 && nowLink > 0) {
                 linkBtn[nowLink].classList.remove('active');
                 linkBtn[nowLink - 1].classList.add('active');
+                nav_bar.scrollTo({
+                    top: linkBtn[nowLink - 1].offsetTop,
+                    left: linkBtn[nowLink - 1].offsetLeft,
+                    behavior: 'smooth'
+                })
                 nowLink--;
             }
         }
@@ -122,3 +134,4 @@ xhr.onreadystatechange = () => {
         })
     }
 }
+xhr.send();

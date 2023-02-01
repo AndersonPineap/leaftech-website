@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/static/public/css/main.css">
     <link rel="stylesheet" href="/static/public/css/index.css">
     <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
-    <title>欢迎，{{ username }}</title>
+    <title>首页</title>
 </head>
 
 <body>
@@ -27,20 +27,22 @@
             <li href="/task">
                 活动任务
             </li>
-            {% if admin == True %}
-            <li href="/task/create">
-                发布活动任务
-            </li>
-            {% endif %}
             <li href="/account">
                账号管理
             </li>
         </ul>
     </nav>
-    <iframe src="/home" frameborder="0" id="app" name="app"></iframe>
+    <iframe src="/home" frameborder="0" id="app" name="app"><span class="loading" style="font-family: icomoon;display: block;width: 1em;height: 1em;"></span></iframe>
+
+    <div id="socket-message-box">
+        <h3> 您有一条新消息</h3>
+        <p></p>
+        <hr>
+        <p>点击此消息框跳转</p>
+    </div>
 </body>
-<script src="/static/public/js/socket.min.js"></script>
+<!-- <script src="/static/public/js/socket.min.js"></script> -->
 <script src="/static/public/js/GM.js"></script>
-<script src="/static/public/js/index.js"></script>
+<script src="/static/public/js/index.js" type="module"></script>
 
 </html>

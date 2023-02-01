@@ -147,3 +147,26 @@ textarea.input_text {
     background: rgb(0, 50, 0);
     transition: .1s;
 }
+
+input[type="radio"] {
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
+}
+
+select {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: rgb(30, 30, 30) 0 0px 15px 0;
+    width: 90%;
+    color: white;
+    background: rgba(17, 17, 17);
+    border: none;
+}
+select option {cursor: pointer;}
+select:hover {
+    box-shadow: rgba(35, 35, 35) 0 0 15px 2px;
+    text-shadow: rgba(210, 210, 210) 0 0 15px;
+    background: rgb(45, 45, 45);
+}

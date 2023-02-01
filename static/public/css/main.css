@@ -1,15 +1,15 @@
 /* 定义字体图标 */
 @font-face {
     font-family: 'icomoon';
-    src:  url('/static/resource/fonts/icomoon.eot?soo6h5');
-    src:  url('/static/resource/fonts/icomoon.eot?soo6h5#iefix') format('embedded-opentype'),
-      url('/static/resource/fonts/icomoon.ttf?soo6h5') format('truetype'),
-      url('/static/resource/fonts/icomoon.woff?soo6h5') format('woff'),
-      url('/static/resource/fonts/icomoon.svg?soo6h5#icomoon') format('svg');
+    src: url('/static/resource/fonts/icomoon.eot?soo6h5');
+    src: url('/static/resource/fonts/icomoon.eot?soo6h5#iefix') format('embedded-opentype'),
+        url('/static/resource/fonts/icomoon.ttf?soo6h5') format('truetype'),
+        url('/static/resource/fonts/icomoon.woff?soo6h5') format('woff'),
+        url('/static/resource/fonts/icomoon.svg?soo6h5#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
-  }
+}
 
 /* 去除所有元素的初始内外边局,设置所有元素过渡300ms */
 * {
@@ -18,6 +18,7 @@
     transition: .3s all ease-in-out;
     font-family: sans-serif;
     scroll-behavior: smooth;
+    color: white;
 }
 
 /* 设置body的最小高度为窗口高度 */
@@ -51,7 +52,7 @@ body {
     border: none;
     text-align: center;
     cursor: pointer;
-    font-family: 'icomoon',sans-serif;
+    font-family: 'icomoon', sans-serif;
 }
 
 .btn:hover {
@@ -105,7 +106,7 @@ body {
     font-weight: 700;
     font-size: 1em;
     background-size: 100% 100%;
-    font-family: 'icomoon',Sans-serif;
+    font-family: 'icomoon', Sans-serif;
 }
 
 /* 在此添加show-info新类型的css */
@@ -169,4 +170,58 @@ body {
     transform: scale(0.1, 0.1);
     transition: 0.2s;
     opacity: 0;
+}
+
+a {
+    width: 100%;
+    color: rgb(0, 150, 0);
+    transition: none;
+}
+
+a:hover {
+    color: rgb(0, 215, 0);
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: loading 1s infinite linear !important;
+    font-family: icomoon !important;
+    display: block !important;
+    width: 1em !important;
+    height: 1em !important;
+    color: rgb(0, 180, 0) !important;
+    font-weight: 400 !important;
+    text-shadow: rgb(0, 50, 0) 0 0 20px !important;
+}
+
+.flex-box {
+    display: flex;
+    border-radius: 8px;
+    flex-direction: column;
+    width: 95%;
+    backdrop-filter: blur(10px);
+    gap: 10px;
+    box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+    padding: 10px 15px;
+}
+.flex-box h1 {
+    letter-spacing: 0.1em;
+    color: rgb(0, 180, 0);
+    font-weight: 800;
+    font-size: 2em;
+    text-shadow: rgb(0, 50, 0) 0 0 20px;
+}
+
+.flex-out {
+    display: flex;
+    width: 95%;
 }
