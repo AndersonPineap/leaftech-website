@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/form.css">
+    <link rel="stylesheet" href="/static/public/css/github-dark.min.css">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <link rel="stylesheet" href="/static/public/css/markdown.css">
+    <script>
+        if (window.self == top.window) {
+            window.top.location = '/'
+        }
+    </script>
+    <style>
+        body,
+        html {
+            background: transparent;
+        }
+
+        body>main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;
+            height: 95vh;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        body>main>div.flex-card {
+            border-radius: 0;
+            min-width: 400px;
+            width: 100%;
+        }
+
+        body>main>div.flex-card>form {
+            height: 100%;
+            flex: 1;
+        }
+
+        body>main>div:last-of-type {
+            overflow: auto;
+            width: 100%;
+            min-width: 400px;
+        }
+
+        body>main>div:last-of-type>h3 {
+            background: rgb(17, 17, 17);
+            text-align: center;
+            letter-spacing: 0.25em;
+            color: rgb(0, 180, 0);
+            font-weight: 800;
+            font-size: 2em;
+            text-shadow: rgb(0, 50, 0) 0 0 20px;
+        }
+    </style>
+</head>
+
+<body uptype="{{ uptype }}" {%if uptype=="update" %}artid={{ id }}{%endif%}>
+    <canvas id="background"></canvas>
+    <main>
+        <div class="flex-card form">
+            <form id="articleData">
+                <div>
+                    <input type="text" class="input_text" name="title" id="title" required>
+                    <i>标题</i>
+                </div>
+                <div style="height: 100%;">
+                    <textarea class="input_text" id="input" name="articel" required></textarea>
+                    <i>内容</i>
+                </div>
+            </form>
+            <div>
+                <input type="button" value="取消" class="btn" id="cancel">
+                <input type="submit" value="提交" class="btn" id="submit">
+            </div>
+        </div>
+        <div>
+            <h3>预览</h3>
+            <div id="output" class="markdown">
+            </div>
+    </main>
+</body>
+<script src="/static/public/js/GM.js"></script>
+<script src="/static/public/js/socket.min.js"></script>
+<script src="/static/public/js/highlight.min.js"></script>
+<script src="/static/public/js/marked.min.js"></script>
+<script src="/static/public/js/mark_editor.js"></script>
+
+</html>

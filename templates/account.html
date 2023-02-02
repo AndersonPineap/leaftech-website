@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <link rel="stylesheet" href="/static/public/css/form.css">
+    <script>
+        if (window.self == top.window) {
+            window.top.location = '/'
+        }
+    </script>
+    <style>
+        body {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .flex-box:first-of-type div {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        .flex-box:first-of-type div div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-box:first-of-type div div p {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 1px;
+            color: white;
+            font-size: 1.5em;
+            font-weight: 1000;
+        }
+
+        .flex-box:first-of-type div div p span {
+            background: rgb(0, 180, 0);
+            border-radius: 4px;
+            padding: 2px 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+            transform: scale(0.8);
+        }
+
+        .flex-box:first-of-type div div div {
+            flex-direction: row;
+        }
+
+        .flex-box:nth-of-type(2) ol {
+            list-style-position: inside;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: white;
+        }
+
+        #create {
+            background: none;
+            height: fit-content;
+            width: fit-content;
+        }
+
+        #search-box {
+            backdrop-filter: none;
+            border-radius: none;
+            border-radius: none;
+            box-shadow: none;
+            margin-left: 20px;
+        }
+
+        #search-box>ul {
+            display: flex;
+            width: 95%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            padding: 0;
+            list-style-type: none;
+            gap: 10px;
+        }
+
+        #search-box>ul>li {
+            display: flex;
+            flex-direction: row;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+            padding: 10px 15px;
+            border-radius: 8px;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #search-box>ul>li>input {width: fit-content;}
+        #search-box>ol {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            list-style-type: none;
+            gap: 10px;
+        }
+
+        #search-box>ol>li {
+            color: white;
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: icomoon, sans-serif;
+            cursor: pointer;
+            text-shadow: rgba(100, 100, 100) 0 0 20px;
+            user-select: none;
+            box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #search-box>ol>li:hover {
+            transform: scale(1.05);
+            text-shadow: rgba(150, 150, 150) 0 0 5px;
+        }
+
+        #search-box>ol>li>input[type="button"] {
+            width: fit-content;
+            margin-left: 10px;
+        }
+
+        input[type='number'] {
+            width: 4em;
+            color: white;
+            background: rgb(15, 15, 15);
+            border: 1px transparent solid;
+            box-shadow: inset 0 0 15px 1px rgb(10, 10, 10);
+            text-shadow: rgba(100, 100, 100) 0 0 20px;
+            outline: none;
+            border-radius: 2px;
+            padding: 0 10px;
+            margin-inline: 5px;
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        input[type='number'] {
+            -moz-appearance: none;
+            appearance: none;
+        }
+        #jump:hover {
+            transform: none;
+        }
+    </style>
+</head>
+<div class="flex-box">
+    <h1>当前账号：</h1>
+    <div>
+        <img src="/static/resource/images/{{ account_avatar }}" alt="头像" width="100px" height="100px"
+            style="border-radius: 16px;">
+        <div>
+            <p>{{ account_name }}<span>{{ account_class }}</span>{% if account_admin %}<span>admin</span>{%endif%}
+            </p>
+            <div>
+                <input type="button" value="修改密码" id="set-pwd" class="btn">
+                <input type="button" value="退出账号" id="sign-out" class="btn">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="flex-box">
+    <h1>我上传的文章：</h1>
+    <ol id="article-output"><span class="loading"></span></ol>
+</div>
+{% if account_admin %}
+<div class="flex-out">
+    <div class="flex-box form" id="create">
+        <h1>创建账户</h1>
+        <form onsubmit="return false;" name="createAccount">
+            <div>
+                <input type="text" name="account-usr" id="account-usr" class="input_text" required>
+                <i>用户名</i>
+            </div>
+            <div>
+                <input type="password" name="account-pwd" id="account-pwd" class="input_text" required>
+                <i>密码</i>
+            </div>
+            <div>
+                <i>所属部门：</i>
+                <select name="account-class">
+                    <option value="programer">编程部</option>
+                    <option value="painter">画师部</option>
+                    <option value="cutter">频像部</option>
+                </select>
+            </div>
+            <div>
+                <i>是否为管理员：</i>
+                <label for="account-admin-true">是</label>
+                <input type="radio" value=true name="account-admin" id="account-admin-true">
+                <label for="account-admin-false">否</label>
+                <input type="radio" value=false name="account-admin" id="account-admin-false" checked required>
+             </div>
+            <div>
+                <input type="reset" value="清空" class="btn" id="reset">
+                <input type="submit" value="登录" class="btn" id="cre-submit">
+            </div>
+        </form>
+    </div>
+    <div class="flex-box" id="search-box">
+        <h1>其他账户操作</h1>
+        <ul></ul>
+        <ol></ol>
+    </div>
+</div>
+{% endif %}
+<script src="/static/public/js/GM.js"></script>
+<script src="/static/public/js/account.js"></script>
+
+</html>

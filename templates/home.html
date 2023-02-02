@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <script>
+        if (window.self == top.window) {
+            window.top.location = '/'
+        }
+    </script>
+    <style>
+        body {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        #hitokoto {
+            padding-left: 50px;
+            color: white;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-box">
+        <h1>『<a href="https://hitokoto.cn/">一言</a>』</h1>
+        <p id="hitokoto"></p>
+    </div>
+</body>
+<script src="/static/public/js/GM.js"></script>
+<script src="/static/public/js/home.js"></script>
+</html>

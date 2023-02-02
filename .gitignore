@@ -1,0 +1,6 @@
+__pycache__
+node_modules
+articledb
+taskdb
+userdb
+*.pycs

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/public/css/main.css">
+    <link rel="stylesheet" href="/static/public/css/form.css">
+    <link rel="shortcut icon" href="/static/resource/images/favicon.ico" type="image/x-icon">
+    <title>欢迎，请登陆</title>
+    <style>
+        .form {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+            box-shadow: 0 0 15px 1px black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="background"></canvas>
+    <div class="flex-card form">
+        <h3>欢迎,请登录</h3>
+        <form>
+            <div>
+                <input type="text" class="input_text" name="username" required>
+                <i>Username</i>
+            </div>
+            <div>
+                <input type="password" class="input_text" name="password" required>
+                <i>Password</i>
+            </div>
+        </form>
+        <div>
+            <input type="submit" value="登录" class="btn" id="submit">
+        </div>
+    </div>
+</body>
+<script src="/static/public/js/GM.js"></script>
+<script src="/static/public/js/index.js" type="module"></script>
+<script src="/static/public/js/sign.js"></script>
+
+</html>

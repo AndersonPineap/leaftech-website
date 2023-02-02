@@ -1,10 +1,24 @@
+/* 定义字体图标 */
+@font-face {
+    font-family: 'icomoon';
+    src: url('/static/resource/fonts/icomoon.eot?soo6h5');
+    src: url('/static/resource/fonts/icomoon.eot?soo6h5#iefix') format('embedded-opentype'),
+        url('/static/resource/fonts/icomoon.ttf?soo6h5') format('truetype'),
+        url('/static/resource/fonts/icomoon.woff?soo6h5') format('woff'),
+        url('/static/resource/fonts/icomoon.svg?soo6h5#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
 /* 去除所有元素的初始内外边局,设置所有元素过渡300ms */
 * {
     padding: 0;
     margin: 0;
     transition: .3s all ease-in-out;
-    scroll-behavior: smooth;
     font-family: sans-serif;
+    scroll-behavior: smooth;
+    color: white;
 }
 
 /* 设置body的最小高度为窗口高度 */
@@ -13,14 +27,13 @@ body {
 }
 
 /* 将背景canvas的z轴设置在最底层 */
-#background 
-{
+#background {
     z-index: -1;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(0,0,0); 
-} 
+    background-color: rgb(0, 0, 0);
+}
 
 /* 针对input的简单初始化 */
 .input_text {
@@ -39,6 +52,7 @@ body {
     border: none;
     text-align: center;
     cursor: pointer;
+    font-family: 'icomoon', sans-serif;
 }
 
 .btn:hover {
@@ -91,6 +105,8 @@ body {
 #show-info-box p::before {
     font-weight: 700;
     font-size: 1em;
+    background-size: 100% 100%;
+    font-family: 'icomoon', Sans-serif;
 }
 
 /* 在此添加show-info新类型的css */
@@ -100,7 +116,7 @@ body {
 }
 
 #show-info-box p[type="normal"]::before {
-    content: '提示：';
+    content: ' 提示：';
     color: rgba(210, 210, 255);
 }
 
@@ -110,7 +126,7 @@ body {
 }
 
 #show-info-box p[type="success"]::before {
-    content: '成功：';
+    content: ' 成功：';
     color: rgba(210, 255, 210);
 }
 
@@ -120,7 +136,7 @@ body {
 }
 
 #show-info-box p[type="warning"]::before {
-    content: '警告：';
+    content: ' 警告：';
     color: rgba(255, 255, 0);
 }
 
@@ -130,7 +146,7 @@ body {
 }
 
 #show-info-box p[type="error"]::before {
-    content: '错误：';
+    content: ' 错误：';
     color: rgba(255, 210, 210);
 }
 
@@ -156,130 +172,56 @@ body {
     opacity: 0;
 }
 
-
-/* 导航栏 */
-/*
-.nav {
-    background-color: white;
-    height: 50px;
-    /* display: flex;
-    justify-content: space-between; */
-/*}*/
-.nav {
-    background-color: white;
+a {
     width: 100%;
-    height: 50px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 9999;
-    /* display: flex;
-    justify-content: space-between; */
+    color: rgb(0, 150, 0);
+    transition: none;
 }
-.nav>ul {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    align-items: center;
-    justify-content: center;
-    list-style-type: none;
-    height: 50px;
-    width: fit-content;
+
+a:hover {
+    color: rgb(0, 215, 0);
 }
-.nav>ul>li {
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: loading 1s infinite linear !important;
+    font-family: icomoon !important;
+    display: block !important;
+    width: 1em !important;
+    height: 1em !important;
+    color: rgb(0, 180, 0) !important;
+    font-weight: 400 !important;
+    text-shadow: rgb(0, 50, 0) 0 0 20px !important;
+}
+
+.flex-box {
     display: flex;
-    flex: 1;
-    height: 40px;
-    width: max-content;
     border-radius: 8px;
-    overflow: hidden;
+    flex-direction: column;
+    width: 95%;
+    backdrop-filter: blur(10px);
+    gap: 10px;
+    box-shadow: 0 0 20px 1px rgb(17, 17, 17);
+    padding: 10px 15px;
 }
-.nav>ul>li>a {
-    padding: 0 10px;
-    text-align: center;
-    line-height: 40px;
-    text-decoration: none;
-    color: black;
-}
-.nav>a{
-    text-decoration: none;
-    color: black;
-    padding-left: 30px;
-    line-height: 50px;
-    font-size: 20px;
-}
-.nav a:hover{
-    color: aquamarine;
-    background: #333;
-}
-#signin {
-    /* padding-left: 50%; */
-    position: absolute;
-    right: 0;
-    top: 0;
-    text-decoration: none;
-    color: black;
-    font-size: 25px;
-}
-#signin:hover{
-    color: brown;
+.flex-box h1 {
+    letter-spacing: 0.1em;
+    color: rgb(0, 180, 0);
+    font-weight: 800;
+    font-size: 2em;
+    text-shadow: rgb(0, 50, 0) 0 0 20px;
 }
 
-
-/* 首页欢迎 */
-#welcome {
-    height: 705px;
-    /* background-image: url(resource/images/favicon.png); */
-    /* background-repeat: no-repeat; */
-    /* background-position: center 100px; */
-    /* background: #000; */
-    margin-top: 50px;
-    position: relative;
-}
-#welcome>h1 {
-    position: absolute;
-    transform: translate(-50%,-100%);
-    left: 50%;
-    top: 50%;
-    color: white;
-    font-size: 4em;
-    text-align: center;
-}
-#welcome #background {
-    position: absolute;
-}
-
-
-/* 文字内容样式 */
-.title{
-    text-align: center;
-    font-size: 70px;
-    font-weight: 100px;
-}
-main{
-    background-color: black;
-    background-image: url(resource/images/黑色三角形.jpg);
-}
-main>section{
-    background-color: white;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-main>section>p{
-    color: black;
-    padding-left: 90px;
-    font-size: 25px;
-    font-weight: 100px;
-    line-height: 65px;
-}
-
-
-
-
-
-footer {
-    height: 200px;
+.flex-out {
+    display: flex;
+    width: 95%;
 }

@@ -11,7 +11,7 @@
     /**这个变量控制粒子的最大数量 */
     const pointNum = 80;
     /**控制粒子颜色 */
-    const colorRGB = '255, 255, 255';
+    const colorRGB = '30, 180, 20';
     /**存储所有粒子的数组 */
     let points = [];
     /**
@@ -72,7 +72,7 @@
             // 修改以下两句可以控制粒子速度
             let speedX = getRandom(-2.5, 2.5);
             let speedY = getRandom(-2.5, 2.5);
-            let color = 'rgba(' + colorRGB + ',' + (1 - size / 3)+')';
+            let color = 'rgba(' + colorRGB + ',' + (1 - size / 3) + ')';
             points.push(new point(x, y, speedX, speedY, size, color))
         }
     }
@@ -89,7 +89,7 @@
                 let distance = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
                 // 距离小于distanceLimit则连接
                 if (distance <= distanceLimit) {
-                    ctx.strokeStyle = 'rgba(' + colorRGB + ',' + (1 - distance / distanceLimit)+')';
+                    ctx.strokeStyle = 'rgba(' + colorRGB + ',' + (1 - distance / distanceLimit) + ')';
                     ctx.beginPath();
                     ctx.lineWidth = .8;
                     ctx.moveTo(p1.x, p1.y);
@@ -108,7 +108,6 @@
         });
         link();
     }
-
     createPoint();
     animate();
 
@@ -120,5 +119,68 @@
         points = [];
         createPoint();
         animate();
-    })
+    });
 }());
+var app = document.querySelector("#app")
+
+// /*以下是页面滚动事件*/
+// var scrollAction = {x: 'undefined', y: 'undefined'}, pageScrollDirection;
+// function getScrollDirection() {
+//     if (typeof scrollAction.x == 'undefined') {
+//         scrollAction.x = window.pageXOffset;
+//         scrollAction.y = window.pageYOffset;
+//     }
+//     var diffX = scrollAction.x - window.pageXOffset;
+//     var diffY = scrollAction.y - window.pageYOffset;
+//     if (diffX < 0) {
+//         // Scroll right
+//         pageScrollDirection = 'right';
+//     } else if (diffX > 0) {
+//         // Scroll left
+//         pageScrollDirection = 'left';
+//     } else if (diffY < 0) {
+//         // Scroll down
+//         pageScrollDirection = 'down';
+//     } else if (diffY > 0) {
+//         // Scroll up
+//         pageScrollDirection = 'up';
+//     }
+//     scrollAction.x = window.pageXOffset;
+//     scrollAction.y = window.pageYOffset;
+// }
+// window.addEventListener('scroll', () => {
+//     getScrollDirection();
+//     if (pageScrollDirection=="down"&&!pageNavChanged){
+//         document.querySelector('#topnav').classList.add('close');
+//         pageNavChanged=true;
+//     } else if (pageScrollDirection=="up"&&pageNavChanged){
+//         document.querySelector('#topnav.close').classList.remove('close');
+//         pageNavChanged=false;
+//     }
+// })
+
+document.querySelectorAll("#topnav ul li").forEach(e=>{
+    e.addEventListener("click", ()=>{
+        app.setAttribute('src', e.getAttribute('href'))
+    })
+})
+// window.setInterval("setIframe()",200)
+// function setIframe(){
+//     try{
+//         app.style.height = app.contentWindow.document.documentElement.scrollHeight+"px";
+//     }catch(ex){}
+// }
+
+// // const observe = new MutationObserver((ml,obs)=>{
+// //     for(let m of ml){
+// //         if (m.type=="attributes" && m.attributeName=="src"){
+// //             try{
+// //                 setTimeout(()=>{app.style.height = app.contentWindow.document.documentElement.scrollHeight+"px";},1000)
+// //                 console.log("a")
+// //             }catch(ex){}
+// //         }
+// //     }
+// // })
+// // observe.observe(app, {attributes: true})
+import'./socket.min.js'
+const socketio = io();
